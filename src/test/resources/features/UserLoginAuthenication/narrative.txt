@@ -1,0 +1,3 @@
+User login authentication
+As an authorized Amazon user
+An user is able to log in his Amazon account
