@@ -6,6 +6,7 @@ import net.thucydides.core.annotations.DefaultUrl;
 
 public class Home extends AmazonBasePageObject 
 {
+	
 	public Home()
 	{
 		super() ;
@@ -13,4 +14,5 @@ public class Home extends AmazonBasePageObject
 		pageElementsTable.put("Sign in securely".toLowerCase(),"#a-autoid-0-announce");
 		pageElementsTable.put("Page Unique Element".toLowerCase(), "#a-autoid-0-announce");	
 	}
+
 }

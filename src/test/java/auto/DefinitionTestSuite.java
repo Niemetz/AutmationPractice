@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 @CucumberOptions(
 		features={"src/test/resources/features"}
 		//,glue={"src.test.java.auto"}
-		//,tags={"@NavigateToLoginPage, @LoginToUserAccount "}
+		,tags={"@Login-Amazon"}
 		)
 public class DefinitionTestSuite {
 

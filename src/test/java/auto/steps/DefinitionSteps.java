@@ -13,7 +13,8 @@ import auto.steps.serenity.EndUserSteps;
 
 public class DefinitionSteps {
 
-    @Steps
+    @SuppressWarnings("rawtypes")
+	@Steps
 	EndUserSteps user;
     
    // @Step
@@ -25,14 +26,14 @@ public class DefinitionSteps {
     
    // @Step
     @When("^he clicks on the \"([^\"]*)\" (?:button|radio button|check box|.*?)$")
-    public void he_clicks_on(String gherkinElement) throws Throwable {
-                user.clicks_on(gherkinElement);
+    public void user_clicks_on_elementX(String gherkinElement) throws Throwable {
+                user.clicks_on_elementX(gherkinElement);
     }
     
    // @Step
     @Then("^he lands on the \"([^\"]*)\" page$")
-    public void he_lands_on_page(String pageName) throws Throwable {
-                user.lands_on_page(pageName);
+    public void user_lands_on_pageX(String pageName) throws Throwable {
+                user.lands_on_pageX(pageName);
     }
 
 
@@ -43,8 +44,8 @@ public class DefinitionSteps {
    }
    
    @When("^he enters \"([^\"]*)\" into the \"([^\"]*)\" input field$")
-   public void user_enters_into_the_input_field(String inputValue, String gherkinElement) throws Throwable {
-               user.enters_into_the_input_field(inputValue, gherkinElement);
+   public void user_enters_inputX_into_the_elementY_input_field(String inputValue, String gherkinElement) throws Throwable {
+               user.enters_inputX_into_the_elementY_input_field(inputValue, gherkinElement);
    }
    
     @Given("^he verifies that, on the \"([^\"]*)\" table, the following record exists:$")
