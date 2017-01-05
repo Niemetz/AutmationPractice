@@ -11,8 +11,8 @@ import org.openqa.selenium.WebDriver;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
 		features={"src/test/resources/features"}
-		//,glue={"src.test.java.auto"}
-		,tags={"@Login-Amazon"}
+		//,tags={"@Login-As-Admin-User, @Verify-Elements-On-Account-Main"}
+		,tags={"@Amazon-User-Login"}
 		)
 public class DefinitionTestSuite {
 
