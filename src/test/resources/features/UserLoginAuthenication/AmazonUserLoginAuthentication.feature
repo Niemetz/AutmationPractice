@@ -3,13 +3,13 @@ Feature: Amazon User login Authentication
   Scenario: Amazon user login authentication
     Given user navigates to Amazon "Home" website
     Then he lands on the "Home" page
-    And he verifies that all expected elements are displayed on the page
-    And he clicks on the "Sign in securely" button
-    Then he lands on the "Login" page
-    And he verifies that all expected elements are displayed on the page
+    #And he verifies that all expected elements are displayed on the page
+    #And he clicks on the "Sign in securely" button
+    #Then he lands on the "Login" page
+    #And he verifies that all expected elements are displayed on the page
     
     
-    # THIS IS THE MESSAGE FROM "auto" PROEJECT
+    # New Message from autoMap
     
     
     #When he enters "nguyen7744@yahoo.com" into the "Email" input field
@@ -21,3 +21,4 @@ Feature: Amazon User login Authentication
    #Then he lands on the "Your Account" page
    # And he verifies that all expected elements are displayed on the page
    # And he clicks on the "Your Orders" link
+

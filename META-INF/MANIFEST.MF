@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: autoMap
+Bundle-SymbolicName: auto
+Bundle-Version: 1.0.0.qualifier
+Export-Package: auto,
+ auto.pages,
+ auto.steps,
+ auto.steps.serenity,
+ auto.util

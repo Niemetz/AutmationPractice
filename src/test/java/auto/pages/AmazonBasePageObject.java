@@ -4,39 +4,43 @@ import org.junit.Assert;
 
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
+//import java.util.TreeMap;
 
 public class AmazonBasePageObject extends PageObject {
 
 	// This table holds the input entries on ALL page
 	// Each entry is identified by the page name, a unique element ID on the page and its input value
 	// | page name | element ID | inputValue| 
-	public static TreeMap<String, TreeMap<String, String>> tableOfAllPagesUnderTest = new TreeMap<String, TreeMap<String, String>>();
+	public static  Map<String, HashMap<String, String>> tableOfAllPagesUnderTest = new HashMap<String, HashMap<String, String>>();
 
-	public static TreeMap<String, TreeMap<String, String>> getMasterElementsTable() {
+
+	public Map<String, HashMap<String, String>> getTableOfAllPagesUnderTest() {
 		return tableOfAllPagesUnderTest;
 	}
 
-	public static void setMasterElementsTable(TreeMap<String, TreeMap<String, String>> masterElementsTable) {
-		AmazonBasePageObject.tableOfAllPagesUnderTest = masterElementsTable;
+	protected void setTableOfAllPagesUnderTest(Map<String, HashMap<String, String>> tableOfAllPagesUnderTest) {
+		tableOfAllPagesUnderTest = tableOfAllPagesUnderTest;
 	}
 
 	// This table holds the input entries on A page
 	// Each entry is identified by a unique element ID on the page and its input value
 	// | element ID | inputValue |
-	protected  TreeMap<String, String> elementIdAndItsInput = new TreeMap<String, String>();
+	protected  Map<String, String> elementIdAndItsInput = new HashMap<String, String>();
 	
 	// This table holds the temporary ALL elements on A page
 	// Each entry is identified by a unique element ID and its location on the page
 	// | element ID | element location |
-	protected TreeMap<String, String> pageElementsTable = new TreeMap<String, String>();
+	protected Map<String, String> pageElementsTable = new HashMap<String, String>();
 	
-	public TreeMap<String, String> getPageElementsTable() {
-		return pageElementsTable;
+	public HashMap<String, String> getPageElementsTable() {
+		return (HashMap<String, String>) pageElementsTable;
 	}
 
-	public void setPageElementsTable(TreeMap<String, String> pageElementsTable) {
+	public void setPageElementsTable(HashMap<String, String> pageElementsTable) {
 		this.pageElementsTable = pageElementsTable;
 	}
 
@@ -79,9 +83,9 @@ public class AmazonBasePageObject extends PageObject {
 		// save the "pageInputTable" along with its "pageName" where it belongs to the "tableOfAllPagesUnderTest"
 		// | page name | gherkinElement | inputValue|
 		
-		tableOfAllPagesUnderTest.put(pageName.toLowerCase(), elementIdAndItsInput);
+		tableOfAllPagesUnderTest.put(pageName.toLowerCase(), (HashMap<String, String>) elementIdAndItsInput);
 
-		System.out.println("Insert this entry into the \"Table of All Pages Under Test\" ... => Page's ID = "+ pageName + " ; " 
+		System.out.println("Map - > Insert this entry into the \"Table of All Pages Under Test\" ... => Page's ID = "+ pageName + " ; " 
 		                   + "Element's ID = "+ gherkinElement.toLowerCase() + " ; " 
 				           + "Element's Value = " + tableOfAllPagesUnderTest.get(pageName).get(gherkinElement.toLowerCase()));
 	}

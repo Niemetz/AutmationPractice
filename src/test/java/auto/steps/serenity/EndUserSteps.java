@@ -100,7 +100,7 @@ public class EndUserSteps extends ScenarioSteps {
 			onPage(pageName).insertEntryToMasterElementsTable(this.pageName, "elementy".toLowerCase(), "Yes");
 			onPage(pageName).insertEntryToMasterElementsTable(this.pageName, "elementz".toLowerCase(), "No");
 			System.out.println("============================================");
-			System.out.println("Snapshot of \"Table of all Pages Under Test\" = " + onPage(pageName).tableOfAllPagesUnderTest);
+			System.out.println("Map -> Snapshot of \"Table of all Pages Under Test\" = " + onPage(pageName).tableOfAllPagesUnderTest);
 			System.out.println("============================================");
 
 		}
@@ -111,7 +111,7 @@ public class EndUserSteps extends ScenarioSteps {
 			onPage(pageName).insertEntryToMasterElementsTable(this.pageName, "elementz", "Yes");
 			
 			System.out.println("============================================");
-			System.out.println("Snapshot of \"Table of all Pages Under Test\" = " + onPage(pageName).tableOfAllPagesUnderTest);
+			System.out.println("Map -> Snapshot of \"Table of all Pages Under Test\" = " + onPage(pageName).tableOfAllPagesUnderTest);
 			System.out.println("============================================");
 
 		}
@@ -126,8 +126,8 @@ public class EndUserSteps extends ScenarioSteps {
 	}
 	
 	@SuppressWarnings("static-access")
-    public TreeMap<String, String> getPageFromMasterTable (String pageName) {
-    	return onPage(pageName).getMasterElementsTable().get(pageName.toLowerCase()); 
+    public Map<String, String> getPageFromMasterTable (String pageName) {
+    	return onPage(pageName).getTableOfAllPagesUnderTest().get(pageName.toLowerCase());
     }
 	
 	@SuppressWarnings("static-access")
@@ -136,22 +136,22 @@ public class EndUserSteps extends ScenarioSteps {
 		if(this.pageName.equalsIgnoreCase("login"))
 		{
 			System.out.println("============================================");
-			System.out.println("Snapshot of \"Table of all Pages Under Test\" = " + onPage(pageName).tableOfAllPagesUnderTest);
+			System.out.println("Map -> Snapshot of \"Table of all Pages Under Test\" = " + onPage(pageName).tableOfAllPagesUnderTest);
 			System.out.println("============================================");
 			
 			// Retrieve the "home" page from the master table
-			TreeMap<String, String> HomePage = getPageFromMasterTable ("home");
+			Map<String, String> HomePage = getPageFromMasterTable ("home");
 			
-			System.out.println("All Elements and their input values on the \"Home\" Page = " + HomePage);
+			System.out.println("Map -> All Elements and their input values on the \"Home\" Page = " + HomePage);
 			System.out.println("On home page; elementx = " + HomePage.get("elementx"));
 			System.out.println("On home page; elementy = " + HomePage.get("elementy"));
 			System.out.println("On home page; elementz = " + HomePage.get("elementz"));
 			
 			System.out.println("============================================");
 			// Retrieve the "login" page from the master table
-			TreeMap<String, String> loginPage = getPageFromMasterTable ("login");
+			Map<String, String> loginPage = getPageFromMasterTable ("login");
 			
-			System.out.println("All Elements and their input values on the \"Login\" Page = " + loginPage);
+			System.out.println("Map -> All Elements and their input values on the \"Login\" Page = " + loginPage);
 			System.out.println("On Login page; elementx = " + loginPage.get("elementx"));
 			System.out.println("On Login page; elementy = " + loginPage.get("elementy"));
 			System.out.println("On Login page; elementz = " + loginPage.get("elementz"));
