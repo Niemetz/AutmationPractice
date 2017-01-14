@@ -18,34 +18,40 @@ public class DefinitionSteps {
 	EndUserSteps user;
     
     @Given("^user navigates to Amazon \"([^\"]*)\" website$")
-    public void user_navigates_to_Amazon_website(String pageName) throws Throwable {
-                user.navigates_to_page(pageName);
+    public void user_navigates_to_Amazon_website(String gherkinPageName) throws Throwable {
+                user.navigates_to_page(gherkinPageName);
 
     }
     
-//   // @Step
-//    @When("^he clicks on the \"([^\"]*)\" (?:button|radio button|check box|.*?)$")
-//    public void user_clicks_on_elementX(String gherkinElement) throws Throwable {
-//                user.clicks_on_elementX(gherkinElement);
-//    }
+   // @Step
+    @When("^he clicks on the \"([^\"]*)\" (?:button|radio button|check box|.*?)$")
+    public void user_clicks_on_elementX(String gherkinElement) throws Throwable {
+                user.clicks_on_elementX(gherkinElement);
+    }
     
    // @Step
     @Then("^he lands on the \"([^\"]*)\" page$")
     public void user_lands_on_pageX(String pageName) throws Throwable {
-                user.lands_on_pageX(pageName);
+               user.lands_on_pageX(pageName);
     }
 
 
-   @Then("^he verifies that all expected elements are displayed on the page$")
-   public void user_verifies_that_all_elements_are_on_the_page() throws Throwable
-   {
-               user.verifies_that_all_elements_are_on_the_page();
+    @Then("^he verifies that all expected elelments are displayed on the page$")
+    public void user_verifies_that_all_expected_elelments_are_displayed_on_the_page() throws Throwable{
+                user.verifies_that_all_expected_elelments_are_displayed_on_the_page();
+    }
+   
+   @When("^he enters \"([^\"]*)\" into the \"([^\"]*)\" input field$")
+   public void user_enters_inputX_into_the_elementY_input_field(String inputValue, String gherkinElement) throws Throwable {
+               user.enters_inputX_into_the_elementY_input_field(inputValue, gherkinElement);
    }
    
-//   @When("^he enters \"([^\"]*)\" into the \"([^\"]*)\" input field$")
-//   public void user_enters_inputX_into_the_elementY_input_field(String inputValue, String gherkinElement) throws Throwable {
-//               user.enters_inputX_into_the_elementY_input_field(inputValue, gherkinElement);
-//   }
+   @When("^he verifies that all input were conrrectly captured, saved and dislayed$")
+   public void user_verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed() throws Throwable {
+               user._verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed();
+   }
+
+   
    
     @Given("^he verifies that, on the \"([^\"]*)\" table, the following record exists:$")
     public void he_verifies_that_on_the_tabel_this_record_exist(String tableName, DataTable recordRow) throws Throwable {

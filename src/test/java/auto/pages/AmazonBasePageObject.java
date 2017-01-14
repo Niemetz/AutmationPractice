@@ -23,8 +23,13 @@ public class AmazonBasePageObject extends PageObject {
 	}
 
 	protected void setTableOfAllPagesUnderTest(Map<String, HashMap<String, String>> tableOfAllPagesUnderTest) {
-		tableOfAllPagesUnderTest = tableOfAllPagesUnderTest;
+		AmazonBasePageObject.tableOfAllPagesUnderTest = tableOfAllPagesUnderTest;
 	}
+
+	
+	public static Map<String, WebElementFacade> webElementFacadeTable =  new HashMap<String, WebElementFacade>();
+	
+
 
 	// This table holds the input entries on A page
 	// Each entry is identified by a unique element ID on the page and its input value
@@ -61,33 +66,51 @@ public class AmazonBasePageObject extends PageObject {
     }
 
 	// verify that all known elements are displayed on the page
-	public void verifyThatAllExpectedElementsAreDisplayed() 
+	public void verifyThatAllExpectedElementsAreDisplayedOnPage(String gherkinPageName) 
 	{
+		int i = 0;
+		
+		System.out.println("============================================");
+		System.out.println("Verifying all expected Elelments on the " + "\"" + gherkinPageName + "\"" + " page...");
+		System.out.println("============================================");
 		for (Entry<String, String> entry : pageElementsTable.entrySet())
 		{
-			System.out.println("Verifying Element is Displayed on Page => " + entry.getKey() + " = " + entry.getValue());
-			Assert.assertNotNull($(entry.getValue()).waitUntilVisible().and().waitUntilEnabled());
+			System.out.println("  " + ++i + ") " + "Verifying Element " + "\"" + entry.getKey().toUpperCase() + "\"" + " is Displayed ... ");
+			
+			try
+			{
+
+				Assert.assertNotNull("TEST",$(entry.getValue()).waitUntilVisible().and().waitUntilEnabled()) ;
+				System.out.println("  **** GOOD:   Element " + "\"" + entry.getKey().toUpperCase()  + "\"" + " is FOUND ... ");
+				System.out.println("  ============================================");
+			} 
+			catch (Exception e)
+			{
+				System.out.println("  **** ERROR:   Element " + "\"" + entry.getKey().toUpperCase()  + "\"" + " is NOT FOUND ...");
+				System.out.println("  ============================================");
+			}
+
 		}
 		System.out.println("============================================");
     }
 	
-	// When an input action takes place, CIAp will insert the input value to the tableOfAllPagesUnderTest
+	// When an input action takes place, program will insert the input value to the tableOfAllPagesUnderTest
 	// The tableOfAllPagesUnderTest serves as the input holder so that it can be used to verify that
-	// CIAP correctly saves and displays the input results after a save transaction took place.
-	public void insertEntryToMasterElementsTable(String pageName, String gherkinElement, String inputValue)
+	// program correctly saves and displays the input results after a save transaction took place.
+	public void insertEntryTotableOfAllPagesUnderTest(String pageName, String gherkinElement, String inputValue)
 	{
 		// save the "target element name" and the "inputValue" to the "pageInputTable"
 		// | gherkinElement | inputValue |
-		elementIdAndItsInput.put(gherkinElement.toLowerCase(), inputValue);
+		elementIdAndItsInput.put(gherkinElement, inputValue);
 
 		// save the "pageInputTable" along with its "pageName" where it belongs to the "tableOfAllPagesUnderTest"
 		// | page name | gherkinElement | inputValue|
 		
 		tableOfAllPagesUnderTest.put(pageName.toLowerCase(), (HashMap<String, String>) elementIdAndItsInput);
 
-		System.out.println("Map - > Insert this entry into the \"Table of All Pages Under Test\" ... => Page's ID = "+ pageName + " ; " 
-		                   + "Element's ID = "+ gherkinElement.toLowerCase() + " ; " 
-				           + "Element's Value = " + tableOfAllPagesUnderTest.get(pageName).get(gherkinElement.toLowerCase()));
+		System.out.println("Insert into the \"Master Table\"..=> Page's ID = "+ pageName + " ; " 
+		                   + "Element's ID = "+ gherkinElement+ " ; " 
+				           + "Element's Value = " + tableOfAllPagesUnderTest.get(pageName).get(gherkinElement));
 	}
 
 }

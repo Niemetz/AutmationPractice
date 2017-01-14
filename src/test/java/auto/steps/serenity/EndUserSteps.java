@@ -3,9 +3,12 @@ package auto.steps.serenity;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
-import auto.pages.*;
 
+import org.junit.Assert;
+
+//import java.util.Map.Entry;
+import auto.pages.*;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.steps.ScenarioSteps;
 
 @SuppressWarnings("serial")
@@ -13,148 +16,165 @@ public class EndUserSteps extends ScenarioSteps {
 
 	String pageName = null;
 	String elementName = null;
-	final TreeMap<String, AmazonBasePageObject> allPages = new TreeMap<String, AmazonBasePageObject>();
+	WebElementFacade elementFacadeID = null;
+	AmazonBasePageObject atCurrentPage = null;
+	final Map<String, AmazonBasePageObject> allPagesTable = new HashMap<String, AmazonBasePageObject>();
+	final Map<String, AmazonBasePageObject> pagesUnderTest = new HashMap<String, AmazonBasePageObject>();
 	final Map<String, String> allElementsOnPage = new HashMap<String, String>();
-	public TreeMap<String, String> retrievedPage = new TreeMap<String, String>();
+	public Map<String, String> retrievedPage = new HashMap<String, String>();
 
 	public EndUserSteps()
 	{
 		this.pageName = null;
 		this.elementName = null;
-		this.retrievedPage = null;
+		this.retrievedPage = null;	
+	}
+
+	public void createTableOfAllPages()
+	{
+		allPagesTable.put("home".toLowerCase(), getPages().getPage(Home.class));        
+		allPagesTable.put("login".toLowerCase(), getPages().getPage(Login.class)); 
+		allPagesTable.put("account main".toLowerCase(), getPages().getPage(AccountMain.class)); 
+		allPagesTable.put("your account".toLowerCase(), getPages().getPage(YourAccount.class));
 	}
 	
-	public void create_map_table()
+	public void navigates_to_page(String gherkinPageName) throws Throwable 
 	{
-		allElementsOnPage.put("elementH", "No");
-		allElementsOnPage.put("elementA", "Yes");
-		allElementsOnPage.put("elementC", "Yes");
-		allElementsOnPage.put("elementB", "No");
-		allElementsOnPage.put("elementD", "No");
-		allElementsOnPage.put("elementE", "Yes");
-		allElementsOnPage.put("elementG", "Yes");
-		allElementsOnPage.put("elementF", "No");
-
-	}
-	public void map_search(String elementToBeSearched)
-	{
-		int step = 0;
-		System.out.println("++++++++++++++++++++++++++++++");
-		System.out.println("Searching for element => "  +"\"" + elementToBeSearched +"\"");
-		for(Entry<String, String> element: allElementsOnPage.entrySet())
-		{
-			System.out.println("Step = " + ++step + " => " + element.getKey() + " = " + allElementsOnPage.get(element.getKey()));
-			if (element.getKey().equalsIgnoreCase(elementToBeSearched.toLowerCase()))
-					System.out.println("Found Element => " +"\"" + element.getKey() +"\"");
-		}
-		System.out.println("++++++++++++++++++++++++++++++");
-	}
-	
-	public void create_table_of_all_pages() {
-		allPages.put("home", getPages().getPage(Home.class));
-		allPages.put("login", getPages().getPage(Login.class));
-		allPages.put("account main", getPages().getPage(AccountMain.class));
-		allPages.put("your account", getPages().getPage(YourAccount.class));
-	}
-
-	public AmazonBasePageObject get_current_page(String pageName) {
-		return allPages.get(pageName.toLowerCase());
-	}
-
-	public void navigates_to_page(String pageName) throws Throwable {
-		// When the user first logins to the application
-		// he must create a table that contains all pages under test
-		create_table_of_all_pages();
-		
-		// and must clear the contents of the tableOfAllPagesUnderTest in the Super Class
+		// clear the contents of the tableOfAllPagesUnderTest in the Super Class
 		AmazonBasePageObject.tableOfAllPagesUnderTest.clear();
 		
-		//currentPage = get_current_page(pageName.toLowerCase());
-		//currentPage.open();
-		
-		onPage(pageName).open();
-
-		// Demo of map search sample
-		create_map_table();
-		map_search("elementH");
+		this.pageName = gherkinPageName.toLowerCase();
+		createTableOfAllPages();
+		if(pagesUnderTest.containsKey(pageName) == false)
+		  pagesUnderTest.put(pageName,allPagesTable.get(pageName) );
+		this.atCurrentPage = pagesUnderTest.get(pageName);
+		atCurrentPage.open();
 	}
 
-	public AmazonBasePageObject onPage(String pageName)
+	public void clicks_on_elementX(String gherkinElement) throws Throwable 
 	{
-		return get_current_page(pageName.toLowerCase());
+		atCurrentPage.getElementFacade(gherkinElement.toLowerCase()).waitUntilVisible().and().waitUntilClickable().click();;
 	}
-	public void clicks_on_elementX(String gherkinElement) throws Throwable {
-		this.elementName = gherkinElement.toLowerCase();
-		onPage(pageName).getElementFacade(this.elementName).waitUntilPresent().and().waitUntilClickable().click();
 
-	}
+//	public WebElementFacade getElementFacade(String elementName)
+//	{
+//		this.elementName = elementName.toLowerCase();
+//		// check to see if the element has been fetched and was stored in the WebElementFacadeTable table?
+//		if( atCurrentPage.getWebElementFacadeTable().get(this.elementName) == null)
+//			atCurrentPage.getWebElementFacadeTable().put(this.elementName, atCurrentPage.getElement(this.elementName));
+//		return atCurrentPage.getWebElementFacadeTable().get(this.elementName);
+//	}
 
 	@SuppressWarnings("static-access")
-	public void lands_on_pageX(String pageName) throws Throwable {
-		this.pageName = pageName.toLowerCase();
-		onPage(pageName).waitFor(onPage(this.pageName).getElementFacade("Page Unique Element".toLowerCase()));
-		onPage(this.pageName).getElementFacade("Page Unique Element".toLowerCase()).waitUntilPresent().and().waitUntilEnabled();
-		if(this.pageName.equalsIgnoreCase("home"))
+	public void lands_on_pageX(String gherkinPageName) throws Throwable 
+	{
+		this.pageName = gherkinPageName.toLowerCase();
+		if(pagesUnderTest.containsKey(pageName) == false)
+			  pagesUnderTest.put(pageName,allPagesTable.get(pageName) );
+			this.atCurrentPage = pagesUnderTest.get(pageName);
+
+
+		atCurrentPage.getElementFacade("Page Unique Element".toLowerCase()).waitUntilPresent().and().waitUntilEnabled();
+		
+		if(pageName.equalsIgnoreCase("home"))
 		{
-			onPage(pageName).insertEntryToMasterElementsTable(this.pageName, "elementx".toLowerCase(), "Yes");
-			onPage(pageName).insertEntryToMasterElementsTable(this.pageName, "elementy".toLowerCase(), "Yes");
-			onPage(pageName).insertEntryToMasterElementsTable(this.pageName, "elementz".toLowerCase(), "No");
+			System.out.println("I am at the HOME page...");
+			//String pageName, String gherkinElement, WebElementFacade webElementFacadeID
+			atCurrentPage.insertEntryTotableOfAllPagesUnderTest(pageName, "elementX","Yes");
+			atCurrentPage.insertEntryTotableOfAllPagesUnderTest(pageName, "elementY","Yes");
+			atCurrentPage.insertEntryTotableOfAllPagesUnderTest(pageName, "elementZ","No");
+			
 			System.out.println("============================================");
-			System.out.println("Map -> Snapshot of \"Table of all Pages Under Test\" = " + onPage(pageName).tableOfAllPagesUnderTest);
+			System.out.println("Map -> Snapshot of \"Master Table\" => " + atCurrentPage.tableOfAllPagesUnderTest);
 			System.out.println("============================================");
 
 		}
 		if(pageName.toLowerCase().equalsIgnoreCase("login"))
 		{
-			onPage(pageName).insertEntryToMasterElementsTable(this.pageName, "elementx", "No");
-			onPage(pageName).insertEntryToMasterElementsTable(this.pageName, "elementy", "No");
-			onPage(pageName).insertEntryToMasterElementsTable(this.pageName, "elementz", "Yes");
+			System.out.println("I am at the LOGIN page...");
+			
+			atCurrentPage.insertEntryTotableOfAllPagesUnderTest(this.pageName, "elementX", "No");
+			atCurrentPage.insertEntryTotableOfAllPagesUnderTest(this.pageName, "elementY", "No");
+			atCurrentPage.insertEntryTotableOfAllPagesUnderTest(this.pageName, "elementZ", "Yes");
 			
 			System.out.println("============================================");
-			System.out.println("Map -> Snapshot of \"Table of all Pages Under Test\" = " + onPage(pageName).tableOfAllPagesUnderTest);
+			System.out.println("Map -> Snapshot of \"Master Table\" = " + atCurrentPage.tableOfAllPagesUnderTest);
 			System.out.println("============================================");
 
 		}
 	}
 
-	public void enters_inputX_into_the_elementY_input_field(String inputValue, String gherkinElement) throws Throwable {
-		elementName = gherkinElement.toLowerCase();
-		onPage(pageName).getElementFacade(elementName).waitUntilVisible().and().waitUntilEnabled().sendKeys(inputValue);
-		onPage(pageName).insertEntryToMasterElementsTable(pageName, gherkinElement, inputValue);
+	public void enters_inputX_into_the_elementY_input_field(String inputValue, String gherkinElement) throws Throwable 
+	{
+		this.elementName = gherkinElement.toLowerCase();
+		// get elementFacadeID from the current page
+		elementFacadeID = atCurrentPage.getElementFacade(elementName);
+		// Enter the input into the input field
+		elementFacadeID.waitUntilVisible().and().waitUntilEnabled().sendKeys(inputValue);
+		// register the webElementID to the webElementFacadeTable
+		atCurrentPage.webElementFacadeTable.put(elementName, elementFacadeID);
+		// insert the elementName and the inputValue into the MasterPageTable
+		atCurrentPage.insertEntryTotableOfAllPagesUnderTest(pageName, elementName, inputValue);
 		
-		
+		System.out.println("============================================");
+		System.out.println("Map -> Snapshot of \"Master Table\" = " + atCurrentPage.tableOfAllPagesUnderTest);
+		System.out.println("============================================");	
 	}
 	
-	@SuppressWarnings("static-access")
-    public Map<String, String> getPageFromMasterTable (String pageName) {
-    	return onPage(pageName).getTableOfAllPagesUnderTest().get(pageName.toLowerCase());
-    }
+	   public void _verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed() throws Throwable {
+		   
+		   // retrieve all Elements and their values from the tableOfAllPagesUnderTest and set them to  the retrievedPage
+		   retrievedPage = atCurrentPage.tableOfAllPagesUnderTest.get(pageName);
+		   
+			  System.out.println("============================================");
+			  System.out.println("Data Input Validation and Verification... " );	
+			  System.out.println("============================================");
+		   
+			  System.out.println("============================================");
+			  System.out.println("Snapshot of Master Table.. " + atCurrentPage.tableOfAllPagesUnderTest);	
+			  System.out.println("============================================");
+			  
+		      System.out.println("Content of the retrievedPage = " + retrievedPage);
+		   
+		   
+		   // for each element, check and and see its value matches what has been saved
+		   for (Entry<String, String> entry : retrievedPage.entrySet())
+		   {
+
+			   int i = 0;
+			   if(entry.getKey().equals("email"))
+			   {
+			      //get the webElementFacade from the webElementFacadeTable
+			      elementFacadeID = atCurrentPage.getElementFacade(entry.getKey());
+			      // go get the value of the element on the page and compare it with the saved input value in the retrievedPage
+
+				  try
+				  {
+			         Assert.assertEquals(elementFacadeID.waitUntilVisible().and().waitUntilEnabled().getTextValue(), retrievedPage.get(entry.getKey()));
+			        System.out.println(++i + ") " + "On Page,      " + entry.getKey() +" = "+ elementFacadeID.waitUntilVisible().and().waitUntilEnabled().getTextValue());
+			        System.out.println(i + ") " + "Stored Value, " + entry.getKey() +" = "+ retrievedPage.get(entry.getKey()));
+				  }catch (Exception e)
+				  {
+						System.out.println("  **** ERROR:   Element " + "\"" + entry.getKey().toUpperCase()  + "\"" + " is NOT MATCHED ...");
+						System.out.println("  ============================================");
+				  }
+			      
+			   }
+			   
+		   }
+
+	   }
+	
+//	@SuppressWarnings("static-access")
+//    public Map<String, String> getPageFromMasterTable (String pageName) {
+//    	return atCurrentPage.tableOfAllPagesUnderTest().get(pageName.toLowerCase());
+//    }
 	
 	@SuppressWarnings("static-access")
-	public void verifies_that_all_elements_are_on_the_page() throws Throwable {
-		onPage(pageName).verifyThatAllExpectedElementsAreDisplayed();
-		if(this.pageName.equalsIgnoreCase("login"))
-		{
-			System.out.println("============================================");
-			System.out.println("Map -> Snapshot of \"Table of all Pages Under Test\" = " + onPage(pageName).tableOfAllPagesUnderTest);
-			System.out.println("============================================");
-			
-			// Retrieve the "home" page from the master table
-			Map<String, String> HomePage = getPageFromMasterTable ("home");
-			
-			System.out.println("Map -> All Elements and their input values on the \"Home\" Page = " + HomePage);
-			System.out.println("On home page; elementx = " + HomePage.get("elementx"));
-			System.out.println("On home page; elementy = " + HomePage.get("elementy"));
-			System.out.println("On home page; elementz = " + HomePage.get("elementz"));
-			
-			System.out.println("============================================");
-			// Retrieve the "login" page from the master table
-			Map<String, String> loginPage = getPageFromMasterTable ("login");
-			
-			System.out.println("Map -> All Elements and their input values on the \"Login\" Page = " + loginPage);
-			System.out.println("On Login page; elementx = " + loginPage.get("elementx"));
-			System.out.println("On Login page; elementy = " + loginPage.get("elementy"));
-			System.out.println("On Login page; elementz = " + loginPage.get("elementz"));
-		}
+
+	public void verifies_that_all_expected_elelments_are_displayed_on_the_page() throws Throwable 
+	{
+		    atCurrentPage.verifyThatAllExpectedElementsAreDisplayedOnPage(this.pageName) ;   
+
 	}
 }
