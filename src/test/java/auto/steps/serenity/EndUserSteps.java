@@ -159,7 +159,7 @@ public class EndUserSteps extends ScenarioSteps {
 
 		System.out.println("============================================");
 		System.out.println("Map -> Snapshot of \"Master Table\"...\n" + atCurrentPage.tableOfAllPagesUnderTest);
-		System.out.println("============================================");
+		System.out.println("============================================") ;
 
 		System.out.println("Action = Enter => Snapshot of \"WebElementFacade Table\"...\n" + atCurrentPage.webElementFacadeTable);
 
