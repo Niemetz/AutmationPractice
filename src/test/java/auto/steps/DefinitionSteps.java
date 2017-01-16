@@ -1,5 +1,6 @@
 package auto.steps;
 
+import net.thucydides.core.annotations.Step;
 //import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import cucumber.api.DataTable;
@@ -35,9 +36,10 @@ public class DefinitionSteps {
                user.lands_on_pageX(pageName);
     }
 
-
+   // @Step("MY SERENITY STEPS AT THE DEFINITION LEVEL.....")
     @Then("^he verifies that all expected elelments are displayed on the page$")
     public void user_verifies_that_all_expected_elelments_are_displayed_on_the_page() throws Throwable{
+    	
                 user.verifies_that_all_expected_elelments_are_displayed_on_the_page();
     }
    

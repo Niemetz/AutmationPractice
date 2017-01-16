@@ -16,9 +16,8 @@ public class AmazonBasePageObject extends PageObject {
 	// Each entry is identified by the page name, a unique element ID on the page and its input value
 	// | page name | element ID | inputValue| 
 	public static  Map<String, HashMap<String, String>> tableOfAllPagesUnderTest = new HashMap<String, HashMap<String, String>>();
-
-
-	public Map<String, HashMap<String, String>> getTableOfAllPagesUnderTest() {
+	
+ 	public Map<String, HashMap<String, String>> getTableOfAllPagesUnderTest() {
 		return tableOfAllPagesUnderTest;
 	}
 
@@ -29,9 +28,7 @@ public class AmazonBasePageObject extends PageObject {
 	
 	public static Map<String, WebElementFacade> webElementFacadeTable =  new HashMap<String, WebElementFacade>();
 	
-
-
-	// This table holds the input entries on A page
+	// This table holds the input entries on a page
 	// Each entry is identified by a unique element ID on the page and its input value
 	// | element ID | inputValue |
 	protected  Map<String, String> elementIdAndItsInput = new HashMap<String, String>();
@@ -80,7 +77,7 @@ public class AmazonBasePageObject extends PageObject {
 			try
 			{
 
-				Assert.assertNotNull("TEST",$(entry.getValue()).waitUntilVisible().and().waitUntilEnabled()) ;
+				Assert.assertNotNull($(entry.getValue()).waitUntilVisible().and().waitUntilEnabled()) ;
 				System.out.println("  **** GOOD:   Element " + "\"" + entry.getKey().toUpperCase()  + "\"" + " is FOUND ... ");
 				System.out.println("  ============================================");
 			} 
@@ -97,8 +94,9 @@ public class AmazonBasePageObject extends PageObject {
 	// When an input action takes place, program will insert the input value to the tableOfAllPagesUnderTest
 	// The tableOfAllPagesUnderTest serves as the input holder so that it can be used to verify that
 	// program correctly saves and displays the input results after a save transaction took place.
-	public void insertEntryTotableOfAllPagesUnderTest(String pageName, String gherkinElement, String inputValue)
+	public void insertEntryToTableOfAllPagesUnderTest(String pageName, String gherkinElement, String inputValue)
 	{
+		
 		// save the "target element name" and the "inputValue" to the "pageInputTable"
 		// | gherkinElement | inputValue |
 		elementIdAndItsInput.put(gherkinElement, inputValue);
@@ -106,7 +104,7 @@ public class AmazonBasePageObject extends PageObject {
 		// save the "pageInputTable" along with its "pageName" where it belongs to the "tableOfAllPagesUnderTest"
 		// | page name | gherkinElement | inputValue|
 		
-		tableOfAllPagesUnderTest.put(pageName.toLowerCase(), (HashMap<String, String>) elementIdAndItsInput);
+		tableOfAllPagesUnderTest.put(pageName, (HashMap<String, String>) elementIdAndItsInput);
 
 		System.out.println("Insert into the \"Master Table\"..=> Page's ID = "+ pageName + " ; " 
 		                   + "Element's ID = "+ gherkinElement+ " ; " 
