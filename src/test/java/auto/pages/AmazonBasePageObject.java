@@ -67,7 +67,6 @@ public class AmazonBasePageObject extends PageObject {
 	{
 		int i = 0;
 		
-		System.out.println("============================================");
 		System.out.println("Verifying all expected Elelments on the " + "\"" + gherkinPageName + "\"" + " page...");
 		System.out.println("============================================");
 		for (Entry<String, String> entry : pageElementsTable.entrySet())
@@ -88,7 +87,7 @@ public class AmazonBasePageObject extends PageObject {
 			}
 
 		}
-		System.out.println("============================================");
+	
     }
 	
 	// When an input action takes place, program will insert the input value to the tableOfAllPagesUnderTest
