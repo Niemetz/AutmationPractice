@@ -1,8 +1,8 @@
 package auto.pages;
 
-public class YourAccount extends AmazonBasePageObject {
+public class YourAccountPage extends AmazonBasePageObject {
 	
-	public YourAccount()
+	public YourAccountPage()
 	{
 //	 super() ;
 //     pageElementsTable.clear();

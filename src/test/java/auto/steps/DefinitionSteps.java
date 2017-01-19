@@ -39,7 +39,6 @@ public class DefinitionSteps {
    // @Step("MY SERENITY STEPS AT THE DEFINITION LEVEL.....")
     @Then("^he verifies that all expected elelments are displayed on the page$")
     public void user_verifies_that_all_expected_elelments_are_displayed_on_the_page() throws Throwable{
-    	
                 user.verifies_that_all_expected_elelments_are_displayed_on_the_page();
     }
    
@@ -48,7 +47,7 @@ public class DefinitionSteps {
                user.enters_inputX_into_the_elementY_input_field(inputValue, gherkinElement);
    }
    
-   @When("^he verifies that all input were conrrectly captured, saved and dislayed$")
+   @When("^he verifies that all input data were conrrectly captured, saved and dislayed$")
    public void user_verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed() throws Throwable {
                user._verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed();
    }

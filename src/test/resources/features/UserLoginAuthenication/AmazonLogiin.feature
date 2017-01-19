@@ -10,7 +10,7 @@ Feature: Amazon User login Authentication
     And  he verifies that all expected elelments are displayed on the page
     When he enters "nguyen7744@yahoo.com" into the "Email" input field
     And he enters "john7755" into the "Password" input field
-    And he verifies that all input were conrrectly captured, saved and dislayed
+    And he verifies that all input data were conrrectly captured, saved and dislayed
     
     #And he clicks on the "Sign in" button
     #Then he lands on the "account main" page
