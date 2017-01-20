@@ -6,14 +6,14 @@ import net.thucydides.core.annotations.DefaultUrl;
 
  @DefaultUrl("https://www.amazon.com") 
 
-public class Home extends AmazonBasePageObject 
+public class HomePage extends AmazonBasePageObject 
 {
-		public Home()
+		public HomePage()
 		{
 			super() ;
-			pageElementsTable.put("Sign in securely".toLowerCase(),"#a-autoid-0-announce");
-			pageElementsTable.put("Account & Lists".toLowerCase(),"#nav-link-accountList");
-			pageElementsTable.put("Page Unique Element".toLowerCase(), "#a-autoid-0-announce");	
+			elementsOnPage.put("Sign in securely".toLowerCase(),"#a-autoid-0-announce");
+			elementsOnPage.put("Account & Lists".toLowerCase(),"#nav-link-accountList");
+			elementsOnPage.put("Page Unique Element".toLowerCase(), "#a-autoid-0-announce");	
 		}
 }
 

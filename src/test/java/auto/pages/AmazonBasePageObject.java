@@ -55,11 +55,11 @@ public class AmazonBasePageObject extends PageObject {
 		System.out.println("============================================");
 		for (Entry<String, String> entry : elementsOnPage.entrySet())
 		{
-			System.out.println("  " + ++i + ") " + "Verifying Element " + "\"" + entry.getKey().toUpperCase() + "\"" + " is Displayed ... ");
+			System.out.println("  " + ++i + ") " + "Verifying Element " + "\"" + entry.getKey() + "\"" + " is Displayed ... ");
 			try
 			{
 				Assert.assertNotNull($(entry.getValue()).waitUntilVisible().and().waitUntilEnabled()) ;
-				System.out.println("  **** PASSED:   Element " + "\"" + entry.getKey().toUpperCase()  + "\"" + " FOUND ... ");
+				System.out.println("  **** PASSED:   Element " + "\"" + entry.getKey()  + "\"" + " FOUND ... ");
 				System.out.println("  ============================================");
 			} 
 			catch (Exception e)
