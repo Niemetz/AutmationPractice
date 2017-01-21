@@ -68,6 +68,7 @@ public class EndUserSteps extends ScenarioSteps {
 		// clear the contents of the tableOfAllPagesUnderTest in the Super Class
 		AmazonBasePageObject.masterTable.clear();
 
+		
 		this.pageName = gherkinPageName.toLowerCase();
 
 //		String variable = "John";
@@ -147,22 +148,23 @@ public class EndUserSteps extends ScenarioSteps {
 		targetElement("Page Unique Element").waitUntilPresent().and().waitUntilEnabled();
 
 		if (pageName.equalsIgnoreCase("home")) {
-			System.out.println("I am at the HOME page...");
-			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry(pageName, "elementX", "Yes");
-			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry(pageName, "elementY", "Yes");
-			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry(pageName, "elementZ", "No");
-			System.out.println("============================================");
-			System.out.println("Map -> Snapshot of \"Master Table\"...\n" + atCurrentPage.masterTable);
-			System.out.println("============================================");
+			System.out.println("I am at the \"ISA Markings for Indicator\" form...");
+			System.out.println("I set the \"Released To Public\" = Yes");
+			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry("ISA Markings for Indicator", "Released To Public", "Yes");
+			System.out.println("I set the \"Display\" = Yes");
+			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry("ISA Markings for Indicator", "Display", "Yes");
+			System.out.println("I set the \"Intelligence Analysis\" = No");
+			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry("ISA Markings for Indicator", "Intelligence Analysis", "No");
+
 		}
 		if (pageName.toLowerCase().equalsIgnoreCase("login")) {
-			System.out.println("I am at the LOGIN page...");
-			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry(pageName, "elementX", "No");
-			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry(pageName, "elementY", "No");
-			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry(pageName, "elementZ", "Yes");
-			System.out.println("============================================");
-			System.out.println("Map -> Snapshot of \"Master Table\"...\n " + atCurrentPage.masterTable);
-			System.out.println("============================================");
+			System.out.println("I am at the \"ISA Markings for Type\" form...");
+			System.out.println("I set the \"Released To Public\" = No");
+			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry("ISA Markings for Type","Released To Public" , "No");
+			System.out.println("I set the \"Display\" = No");
+			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry("ISA Markings for Type", "Display", "No");
+			System.out.println("I set the \"Intelligence Analysis\" = Yes");
+			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry("ISA Markings for Type", "Inteligence Analysis", "Yes");
 		}
 	}
 
@@ -170,8 +172,11 @@ public class EndUserSteps extends ScenarioSteps {
 	public void enters_inputX_into_the_elementY_input_field(String inputValue, String gherkinElement) throws Throwable {
 		// Enter the input into the input field
 		targetElement(gherkinElement).waitUntilVisible().and().waitUntilEnabled().sendKeys(inputValue);
+		
 		// insert the elementName and the inputValue into the MasterPageTable
 		atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry(pageName, gherkinElement, inputValue);
+		
+		
 		System.out.println("============================================");
 		System.out.println("Map -> Snapshot of \"Master Table\"...\n" + atCurrentPage.masterTable);
 		System.out.println("============================================") ;

@@ -1,7 +1,5 @@
 package auto.pages;
 
-// Start of Import Section
-//Total LOC = 6
 import net.thucydides.core.annotations.DefaultUrl;
 
  @DefaultUrl("https://www.amazon.com") 
