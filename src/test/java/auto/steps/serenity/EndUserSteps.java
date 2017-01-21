@@ -202,11 +202,11 @@ public class EndUserSteps extends ScenarioSteps {
 		// retrieve all Elements and their values from the
 		// tableOfAllPagesUnderTest and set them to the retrievedPage
 		retrievedPage = atCurrentPage.masterTable.get(pageName);
-		System.out.println("============================================");
+//		System.out.println("============================================");
 		System.out.println("Data Input Validation and Verification on " + "\"" + pageName.toUpperCase() + "\"" + " Page...");
 		System.out.println("============================================");
-		System.out.println("Snapshot of Master Table... \n" + atCurrentPage.masterTable);
-		System.out.println("============================================");
+//		System.out.println("Snapshot of Master Table... \n" + atCurrentPage.masterTable);
+//		System.out.println("============================================");
 		System.out.println("Content of the retrievedPage... " + pageName + " = " + retrievedPage);
 		System.out.println("Content of the " +"\"" + pageName +"\" page...");
 
