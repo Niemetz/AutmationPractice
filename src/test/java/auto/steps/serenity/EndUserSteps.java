@@ -119,8 +119,12 @@ public class EndUserSteps extends ScenarioSteps {
 	public void clicks_on_elementX(String gherkinElement) throws Throwable {
 		targetElement(gherkinElement).waitUntilVisible().and().waitUntilClickable().click();
 		System.out.println("============================================");
-		System.out.println(String.format("Action = CLick => Snapshot of \"WebElementFacade Table\" "
-				                         + "...\n %s", atCurrentPage.allWebElementsUnderTest));
+		System.out.println(String.format("Click on Element %s" , gherkinElement));
+		System.out.println("Saving elementFacade to the allWebElementsUnderTest table." + gherkinElement);		
+		System.out.println("Snapshot of \"allWebElementsUnderTest table.\"..." );
+	    for (Entry<String, WebElementFacade> entry : atCurrentPage.allWebElementsUnderTest.entrySet()) {
+	    	System.out.println( "       " +entry.getKey() + " = " +   entry.getValue() );
+	    }
 		System.out.println("============================================");
 	}
 
@@ -176,11 +180,20 @@ public class EndUserSteps extends ScenarioSteps {
 		// insert the elementName and the inputValue into the MasterPageTable
 		atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry(pageName, gherkinElement, inputValue);
 		
-		
 		System.out.println("============================================");
-		System.out.println("Map -> Snapshot of \"Master Table\"...\n" + atCurrentPage.masterTable);
-		System.out.println("============================================") ;
-		System.out.println("Action = Enter => Snapshot of \"WebElementFacade Table\"...\n" + atCurrentPage.allWebElementsUnderTest);
+		System.out.println(String.format("Enter \"" + inputValue + "\" on Element \"" + gherkinElement + "\""));
+		System.out.println("Saving elementFacade to the allWebElementsUnderTest table." + gherkinElement);		
+		System.out.println("Snapshot of \"allWebElementsUnderTest table.\"..." );
+	    for (Entry<String, WebElementFacade> entry : atCurrentPage.allWebElementsUnderTest.entrySet()) {
+	    	System.out.println( "*** " +entry.getKey() + " = " +   entry.getValue() );
+	    }
+		System.out.println("============================================");
+
+//		
+//		System.out.println("============================================");
+//		System.out.println("Map -> Snapshot of \"Master Table\"...\n" + atCurrentPage.masterTable);
+//		System.out.println("============================================") ;
+//		System.out.println("Action = Enter => Snapshot of \"WebElementFacade Table\"...\n" + atCurrentPage.allWebElementsUnderTest);
 	}
 
 	@SuppressWarnings("static-access")

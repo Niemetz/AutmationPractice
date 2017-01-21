@@ -96,8 +96,6 @@ public class AmazonBasePageObject extends PageObject {
 		// save the "target element name" and the "inputValue" to the "pageInputTable"
 		// | gherkinElement | inputValue |
 		allElementsAndTheirInputDataOnPageX.put(gherkinElement, inputValue);
-		
-		
 		// save the "pageInputTable" along with its "pageName" where it belongs to the "tableOfAllPagesUnderTest"
 		// | page name | gherkinElement | inputValue|
 		
@@ -105,13 +103,16 @@ public class AmazonBasePageObject extends PageObject {
 		
 		System.out.println("Insert into the \"Master Table\"..=> Page " + "\"" + pageName + "\": " + gherkinElement+ " = " +masterTable.get(pageName).get(gherkinElement));
 		}
-		//System.out.println("============================================");
-		System.out.println("Map -> Snapshot of \"Master Table\"...\n" + masterTable);
 		System.out.println("============================================");
-		
-//		System.out.println("Insert into the \"Master Table\"..=> Page's ID = "+ pageName + " ; " 
-//		                   + "Element's ID = "+ gherkinElement+ " ; " 
-//				           + "Element's Value = " + masterTable.get(pageName).get(gherkinElement));
+		System.out.println("Snapshot of \"Master Table\"..." );
+		for (Entry<String, Map<String, String>> entry : masterTable.entrySet()) {
+			
+		    System.out.println("Form = " + entry.getKey() + ":");
+		    for (Entry<String, String> entry2 : entry.getValue().entrySet()) {
+		    	System.out.println( "       " +entry2.getKey() + " = " +   entry2.getValue() );
+		    }
+		    System.out.println("============================================");
+		}
 	}
 
 }
