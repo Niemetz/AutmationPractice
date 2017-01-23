@@ -90,7 +90,7 @@ public class AmazonBasePageObject extends PageObject {
 			loginMap.put(gherkinElement, inputValue);
 			masterTable.put(pageName, loginMap);
 			System.out.println("Insert into the \"Master Table\"..=> Page " + "\"" + pageName + "\": " + gherkinElement+ " = " +masterTable.get(pageName).get(gherkinElement));
-		}
+		} 
 		else
 		{
 		// save the "target element name" and the "inputValue" to the "pageInputTable"
@@ -110,7 +110,7 @@ public class AmazonBasePageObject extends PageObject {
 		System.out.println("Snapshot of \"Master Table\"..." );
 		for (Entry<String, Map<String, String>> entry : masterTable.entrySet()) {
 			
-		    System.out.println("Form = " + entry.getKey() + ":");
+		    System.out.println("Container/Form = " + entry.getKey() + ":");
 		    for (Entry<String, String> entry2 : entry.getValue().entrySet()) {
 		    	System.out.println( "       " +entry2.getKey() + " = " +   entry2.getValue() );
 		    }

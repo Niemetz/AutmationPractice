@@ -150,7 +150,7 @@ public class EndUserSteps extends ScenarioSteps {
 		targetElement("Page Unique Element").waitUntilPresent().and().waitUntilEnabled();
 
 		if (pageName.equalsIgnoreCase("home")) {
-			System.out.println("I am at the \"ISA Markings for Indicator\" form...");
+			System.out.println("I am at the \"ISA Markings for Indicator\" container/form...");
 			System.out.println("I set the \"Released To Public\" = Yes");
 			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry("ISA Markings for Indicator", "Released To Public", "Yes");
 			System.out.println("I set the \"Display\" = Yes");
@@ -160,7 +160,7 @@ public class EndUserSteps extends ScenarioSteps {
 
 		}
 		if (pageName.toLowerCase().equalsIgnoreCase("login")) {
-			System.out.println("I am at the \"ISA Markings for Type\" form...");
+			System.out.println("I am at the \"ISA Markings for Type\" container/form...");
 			System.out.println("I set the \"Released To Public\" = No");
 			atCurrentPage.insertIntoTableOfAllPagesUnderTestThisEntry("ISA Markings for Type","Released To Public" , "No");
 			System.out.println("I set the \"Display\" = No");
@@ -184,10 +184,9 @@ public class EndUserSteps extends ScenarioSteps {
 		System.out.println("Snapshot of \"allWebElementsUnderTest table.\"..." );
 	    for (Entry<String, WebElementFacade> entry : atCurrentPage.allWebElementsUnderTest.entrySet()) {
 	    	System.out.println( "*** " +entry.getKey() + " = " +   entry.getValue() );
-	    }
+	    } 
 		System.out.println("============================================");
 
-//		
 //		System.out.println("============================================");
 //		System.out.println("Map -> Snapshot of \"Master Table\"...\n" + atCurrentPage.masterTable);
 //		System.out.println("============================================") ;
