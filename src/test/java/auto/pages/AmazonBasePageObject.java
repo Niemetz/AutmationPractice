@@ -96,13 +96,16 @@ public class AmazonBasePageObject extends PageObject {
 		// save the "target element name" and the "inputValue" to the "pageInputTable"
 		// | gherkinElement | inputValue |
 		allElementsAndTheirInputDataOnPageX.put(gherkinElement, inputValue);
+			
 		// save the "pageInputTable" along with its "pageName" where it belongs to the "tableOfAllPagesUnderTest"
 		// | page name | gherkinElement | inputValue|
 		
 		masterTable.put(pageName, allElementsAndTheirInputDataOnPageX);
+			
 		
 		System.out.println("Insert into the \"Master Table\"..=> Page " + "\"" + pageName + "\": " + gherkinElement+ " = " +masterTable.get(pageName).get(gherkinElement));
-		}
+		} // End of If
+		
 		System.out.println("============================================");
 		System.out.println("Snapshot of \"Master Table\"..." );
 		for (Entry<String, Map<String, String>> entry : masterTable.entrySet()) {

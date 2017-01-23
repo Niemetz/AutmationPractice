@@ -8,7 +8,7 @@ Feature: Amazon User login Authentication
     When he clicks on the "Sign in securely" button
     Then he lands on the "Login" page
     And  he verifies that all expected elelments are displayed on the page
-    When he enters "nguyen7744@yahoo.com" into the "Email" input field
+    When he enters "John.Nguyen@yahoo.com" into the "Email" input field
     And he enters "John The Landscape Desinger" into the "Password" input field
     And he verifies that all input data were conrrectly captured, saved and dislayed
     

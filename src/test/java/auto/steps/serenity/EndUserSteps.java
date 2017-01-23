@@ -59,7 +59,6 @@ public class EndUserSteps extends ScenarioSteps {
 		case "account main":allPagesUnderTest.put("account main", getPages().getPage(AccountMainPage.class));;break;
 		case "your account":allPagesUnderTest.put("your account", getPages().getPage(YourAccountPage.class));;break;
 		default: System.out.println(String.format("ERROR... Page %s NOT FOUND!!!",gherkinPageName ));
-		//default: System.out.println("ERROR... Page " + "\"" + gherkinPageName + "\"" + " NOT FOUND!!!");
 		}
 		return allPagesUnderTest.get(pageName);
 	}
@@ -68,7 +67,6 @@ public class EndUserSteps extends ScenarioSteps {
 		// clear the contents of the tableOfAllPagesUnderTest in the Super Class
 		AmazonBasePageObject.masterTable.clear();
 
-		
 		this.pageName = gherkinPageName.toLowerCase();
 
 //		String variable = "John";
