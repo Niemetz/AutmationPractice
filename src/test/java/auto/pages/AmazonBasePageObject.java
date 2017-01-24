@@ -13,7 +13,7 @@ import java.util.Map.Entry;
 public class AmazonBasePageObject extends PageObject {
         
 	
-	// OK I WANT TO SEE A PULL FROM THIS HEAD
+	// OK I see this now..GO HEAD AND CHECK THIS IN !!!! NOW
 	
 	
 	// This table holds the input entries on ALL page
