@@ -50,7 +50,7 @@ public class EndUserSteps extends ScenarioSteps {
 	// allPagesTable.put("your account".toLowerCase(),
 	// getPages().getPage(YourAccount.class));
 	// }
-	//
+
 	public AmazonBasePageObject getCurrentPage(String gherkinPageName) {
 		this.pageName = gherkinPageName.toLowerCase();
 		switch (pageName) {
