@@ -13,7 +13,7 @@ import java.util.Map.Entry;
 public class AmazonBasePageObject extends PageObject {
         
 	
-	// OK I see this now..GO HEAD AND CHECK THIS IN !!!! NOW
+	// OK I see this now..GO HEAD AND CHECK THIS IN !!!! Where is the checkin file?
 	
 	
 	// This table holds the input entries on ALL page
