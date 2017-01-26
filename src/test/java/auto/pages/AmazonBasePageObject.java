@@ -1,6 +1,7 @@
 package auto.pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
@@ -15,7 +16,6 @@ public class AmazonBasePageObject extends PageObject {
 	// This table holds the input entries on ALL page
 	// Each entry is identified by the page name, a unique element ID on the page and its input value
 	// | page name | element ID | inputValue| 
-
 	public static  Map<String, Map<String, String>> masterTable = new HashMap<String, Map<String, String>>();
 
 	public static Map<String, WebElementFacade> allWebElementsUnderTest =  new HashMap<String, WebElementFacade>();
@@ -27,8 +27,6 @@ public class AmazonBasePageObject extends PageObject {
 	
 	// For login mapping
 	protected  Map<String, String> loginMap = new HashMap<String, String>();
-	
-	
 	
 	
 	// This table holds the temporary ALL elements on A page

@@ -55,9 +55,9 @@ public class EndUserSteps extends ScenarioSteps {
 		this.pageName = gherkinPageName.toLowerCase();
 		switch (pageName) {
 		case "home":allPagesUnderTest.put("home", getPages().getPage(HomePage.class));break;
-		case "login":allPagesUnderTest.put("login", getPages().getPage(LoginPage.class));;break;
-		case "account main":allPagesUnderTest.put("account main", getPages().getPage(AccountMainPage.class));;break;
-		case "your account":allPagesUnderTest.put("your account", getPages().getPage(YourAccountPage.class));;break;
+		case "login":allPagesUnderTest.put("login", getPages().getPage(LoginPage.class));break;
+		case "account main":allPagesUnderTest.put("account main", getPages().getPage(AccountMainPage.class));break;
+		case "your account":allPagesUnderTest.put("your account", getPages().getPage(YourAccountPage.class));break;
 		default: System.out.println(String.format("ERROR... Page %s NOT FOUND!!!",gherkinPageName ));
 		}
 		return allPagesUnderTest.get(pageName);
