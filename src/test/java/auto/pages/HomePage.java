@@ -9,9 +9,9 @@ public class HomePage extends AmazonBasePageObject
 		public HomePage()
 		{
 			super() ;
-			elementsOnPage.put("Sign in securely".toLowerCase(),"#a-autoid-0-announce");
-			elementsOnPage.put("Account & Lists".toLowerCase(),"#nav-link-accountList");
-			elementsOnPage.put("Page Unique Element".toLowerCase(), "#a-autoid-0-announce");	
+			mapTable.put("Sign in securely".toLowerCase(),"#a-autoid-0-announce");
+			mapTable.put("Account & Lists".toLowerCase(),"#nav-link-accountList");
+			mapTable.put("Page Unique Element".toLowerCase(), "#a-autoid-0-announce");	
 		}
 }
 

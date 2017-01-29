@@ -6,8 +6,8 @@ public class AccountMainPage extends AmazonBasePageObject {
  {
 	 super() ;
         
-	 elementsOnPage.put("Your Account".toLowerCase(),"#nav-link-accountList");
-	 elementsOnPage.put("Page Unique Element".toLowerCase(),"#nav-link-accountList");
+	 mapTable.put("Your Account".toLowerCase(),"#nav-link-accountList");
+	 mapTable.put("Page Unique Element".toLowerCase(),"#ap_password");
  }
  
 }

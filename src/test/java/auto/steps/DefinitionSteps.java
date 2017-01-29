@@ -1,6 +1,6 @@
 package auto.steps;
 
-import net.thucydides.core.annotations.Step;
+//import net.thucydides.core.annotations.Step;
 //import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import cucumber.api.DataTable;
@@ -14,14 +14,12 @@ import auto.steps.serenity.EndUserSteps;
 
 public class DefinitionSteps {
 
-    @SuppressWarnings("rawtypes")
 	@Steps
 	EndUserSteps user;
     
     @Given("^user navigates to Amazon \"([^\"]*)\" website$")
     public void user_navigates_to_Amazon_website(String gherkinPageName) throws Throwable {
                 user.navigates_to_page(gherkinPageName);
-
     }
     
    // @Step
@@ -52,8 +50,6 @@ public class DefinitionSteps {
                user._verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed();
    }
 
-   
-   
     @Given("^he verifies that, on the \"([^\"]*)\" table, the following record exists:$")
     public void he_verifies_that_on_the_tabel_this_record_exist(String tableName, DataTable recordRow) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
@@ -70,7 +66,5 @@ public class DefinitionSteps {
     	   System.out.println(wholeRow.get(i).get(0) + " = " + wholeRow.get(i).get(1));
     	}
     }
-
-
 }
 

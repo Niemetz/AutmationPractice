@@ -16,23 +16,25 @@ public class AmazonBasePageObject extends PageObject {
 	// This table holds the input entries on ALL page
 	// Each entry is identified by the page name, a unique element ID on the page and its input value
 	// | page name | element ID | inputValue| 
-	public static  Map<String, Map<String, String>> masterTable = new HashMap<String, Map<String, String>>();
 
-	public static Map<String, WebElementFacade> allWebElementsUnderTest =  new HashMap<String, WebElementFacade>();
+	public static  Map<String, Map<String, String>> masterTable = new HashMap<>();
 	
 	// This table holds the input entries on a page
 	// Each entry is identified by a unique element ID on the page and its input value
 	// | element ID | inputValue |
-	protected  Map<String, String> allElementsAndTheirInputDataOnPageX = new HashMap<String, String>();
+	protected  Map<String, String> allElementsAndTheirInputDataOnPageX = new HashMap<>();
 	
 	// For login mapping
-	protected  Map<String, String> loginMap = new HashMap<String, String>();
-	
+	//protected  Map<String, String> loginMap = new HashMap<String, String>();
+	public  Map<String, String> loginMap = new HashMap<>();
 	
 	// This table holds the temporary ALL elements on A page
 	// Each entry is identified by a unique element ID and its location on the page
 	// | element ID | element location |
-	protected Map<String, String> elementsOnPage = new HashMap<String, String>();
+	protected Map<String, String> mapTable = new HashMap<>();
+
+
+	public Object allWebElementsUnderTest;
 	
 	// This is the constructor of the Superclass page of all application pages
 	// It inherits the PageObjects Superclass from the Serenity framework
@@ -41,13 +43,20 @@ public class AmazonBasePageObject extends PageObject {
 	public AmazonBasePageObject()
 	{
 		allElementsAndTheirInputDataOnPageX.clear();
-		elementsOnPage.clear();
+		mapTable.clear();
 	}
 	
 	// Get a single element on the page
-	public WebElementFacade getElementFacade(String gherkinElement) 
+	public WebElementFacade getElement(String gherkinElement) 
 	{
-		return $(elementsOnPage.get(gherkinElement.toLowerCase())).waitUntilVisible().and().waitUntilEnabled() ; 
+//		switch(classInstance)
+//		{
+//		case "home2" : 
+//			           HomePage2 home2 = new HomePage2();
+//			           home2.
+//			           
+// 		}
+		return $(mapTable.get(gherkinElement.toLowerCase())).waitUntilVisible().and().waitUntilEnabled() ; 
     }
 
 	// verify that all known elements are displayed on the page
@@ -57,7 +66,7 @@ public class AmazonBasePageObject extends PageObject {
 		
 		System.out.println("Verifying all expected Elelments on the " + "\"" + gherkinPageName + "\"" + " page...");
 		System.out.println("============================================");
-		for (Entry<String, String> entry : elementsOnPage.entrySet())
+		for (Entry<String, String> entry : mapTable.entrySet())
 		{
 			if(!entry.getKey().equalsIgnoreCase("page unique element"))
 			{
@@ -80,7 +89,7 @@ public class AmazonBasePageObject extends PageObject {
 	// When an input action takes place, program will insert the input value to the tableOfAllPagesUnderTest
 	// The tableOfAllPagesUnderTest serves as the input holder so that it can be used to verify that
 	// program correctly saves and displays the input results after a save transaction took place.
-	public void insertIntoTableOfAllPagesUnderTestThisEntry(String pageName, String gherkinElement, String inputValue)
+	public void insertIntoMasterTable(String pageName, String gherkinElement, String inputValue)
 	{
 		
 		if(pageName.equalsIgnoreCase("login"))
@@ -93,14 +102,14 @@ public class AmazonBasePageObject extends PageObject {
 		{
 		// save the "target element name" and the "inputValue" to the "pageInputTable"
 		// | gherkinElement | inputValue |
-		allElementsAndTheirInputDataOnPageX.put(gherkinElement, inputValue);
+		allElementsAndTheirInputDataOnPageX.put(new String(gherkinElement), inputValue);
 			
 		// save the "pageInputTable" along with its "pageName" where it belongs to the "tableOfAllPagesUnderTest"
 		// | page name | gherkinElement | inputValue|
 		
 		masterTable.put(pageName, allElementsAndTheirInputDataOnPageX);
-			
 		
+
 		System.out.println("Insert into the \"Master Table\"..=> Page " + "\"" + pageName + "\": " + gherkinElement+ " = " +masterTable.get(pageName).get(gherkinElement));
 		} // End of If
 		
@@ -115,5 +124,4 @@ public class AmazonBasePageObject extends PageObject {
 		    System.out.println("============================================");
 		}
 	}
-
 }
