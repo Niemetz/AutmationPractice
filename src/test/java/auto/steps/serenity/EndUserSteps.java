@@ -183,7 +183,7 @@ public class EndUserSteps extends ScenarioSteps {
 		String EmailAddressOnPage = targetElement("Email") .waitUntilVisible().and().waitUntilClickable().getTextValue() ;
 		
 		System.out.println("I compare the stored Email input = " + storedEmailAddress);
-		System.out.println("to the actual value of Email     = " + EmailAddressOnPage +" on the page");
+		System.out.println("to the actual value of Email     = " + EmailAddressOnPage );
 		try {
 			  //System.out.println("============================================");
 			  System.out.println("Result of comparison...");
@@ -194,41 +194,7 @@ public class EndUserSteps extends ScenarioSteps {
 		     System.out.println("  **** ERROR:   Element " + "\"" + EmailAddressOnPage + "\""+ " is NOT MATCHED ...");
 		     System.out.println("  ============================================");
 	 }
-		
-//		// retrieve all Elements and their values from the
-//		// tableOfAllPagesUnderTest and set them to the retrievedPage
-//		retrievedPage = currentPage.masterTable.get(pageName);
-//		System.out.println("Data Input Validation and Verification on " + "\"" + pageName.toUpperCase() + "\"" + " Page...");
-//		System.out.println("============================================");
-////		System.out.println("Snapshot of Master Table... \n" + atCurrentPage.masterTable);
-////		System.out.println("============================================");
-//		System.out.println("Content of the retrievedPage... " + pageName + " = " + retrievedPage);
-//		System.out.println("Content of the " +"\"" + pageName +"\" page...");
-// 
-//		// for each element, check and and see its value matches what has been saved
-//		for (Entry<String, Map<String, String>> sectionEntry : retrievedPage.entrySet()) {
-//	
-//			int i = 0;
-//			for (Entry<String, String> elementSet : retrievedPage.get(sectionEntry.getKey()).entrySet())
-//			{
-//			if (elementSet.getKey().equals("Email")) {
-//				// retrieve the stored webElementFacad, on at a time, from the webElementFacadeTable
-//				targetElement = targetElement(elementSet.getKey());
-//                
-//				// go get the value of the element on the page and compare it
-//				// with the saved input value in the retrievedPage
-//				try {
-//					Assert.assertEquals(targetElement.waitUntilVisible().and().waitUntilEnabled().getTextValue(),retrievedPage.get(elementSet.getKey()));
-//					System.out.println(++i + ") " + "Value On Page             => " + elementSet.getKey() + " = "+ targetElement.waitUntilVisible().and().waitUntilEnabled().getTextValue());
-//					System.out.println(i + ") " +   "Value in input Data Table => " + elementSet.getKey() + " = " + retrievedPage.get(elementSet.getKey()));
-//				} catch (Exception e) {
-//					System.out.println("  **** ERROR:   Element " + "\"" + elementSet.getKey().toUpperCase() + "\""+ " is NOT MATCHED ...");
-//					System.out.println("  ============================================");
-//				}
-//			  }
-//			}
-//		}
-	}
+}
 	
 
 	public void verifies_that_all_expected_elelments_are_displayed_on_the_page() throws Throwable {
