@@ -9,6 +9,8 @@ import java.util.Map.Entry;
 import org.junit.Assert;
 
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.pages.PageObject;
 
 public class AmazonBasePageObject extends PageObject {
@@ -53,13 +55,13 @@ public class AmazonBasePageObject extends PageObject {
 		return $(mapTable.get(gherkinElement.toLowerCase())).waitUntilVisible().and().waitUntilEnabled() ; 
     }
 
-	// verify that all known elements are displayed on the page
-	public void verifyThatAllExpectedElementsAreDisplayedOnPage(String gherkinPageName) 
+	@Step("I am at the  AmazonPbasePageObject class")
+	public void verifyThatAllExpectedElementsAreDisplayedOnPage(String pageName) 
 	{
 		int i = 0;
-		
-		System.out.println("Verifying all expected Elelments on the " + "\"" + gherkinPageName + "\"" + " page...");
 		System.out.println("============================================");
+		System.out.println("Verifying all expected Elelments on the " + "\"" + pageName + "\"" + " page...");
+		//System.out.println("============================================");
 		for (Entry<String, String> entry : mapTable.entrySet())
 		{
 			if(!entry.getKey().equalsIgnoreCase("page unique element"))
@@ -73,12 +75,21 @@ public class AmazonBasePageObject extends PageObject {
 			} 
 			catch (Exception e)
 			{
-				System.out.println("  **** FAILED:   Element " + "\"" + entry.getKey().toUpperCase()  + "\"" + " is NOT FOUND ...");
-				System.out.println("  ============================================");
+				error_Element_is_Not_On_Page(entry.getKey().toUpperCase());
 			}
 			}
 		}
     }
+	
+	
+	@Step("Error.... Element not Found on Page!!!!")
+	public void error_Element_is_Not_On_Page(String element)
+	{
+		System.err.println("  **** FAILED:   Element " + "\"" + element + "\"" + " is NOT FOUND ...");
+		System.out.println("  ============================================");
+	}
+	
+	
 	
 	// When an input action takes place, program will insert the input value to the tableOfAllPagesUnderTest
 	// The tableOfAllPagesUnderTest serves as the input holder so that it can be used to verify that

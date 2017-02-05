@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+
 
 //import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -14,7 +14,7 @@ import org.junit.Assert;
 
 //import java.util.Map.Entry;
 import auto.pages.*;
-import net.serenitybdd.core.pages.PageObject;
+
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
@@ -173,9 +173,30 @@ public class EndUserSteps extends ScenarioSteps {
 		mainSection.getMainSection().put(new String(gherkinElement), inputValue);
 		masterList.add(mainSection.getMainSection());
 	}
-
-	public void _verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed() throws Throwable 
+	
+	@Step
+	public void on_the_page_and_at_the_section_user_verifies_that_all_input_data_were_conrrectly_captured_saved_and_dislayed(String gherkinPageName, String gherkinSectionName) throws Throwable {
+		/* 
+		 * Write the loop here to go thru all elements on the page
+		 * Look up the list for these two conditions: 1 - page name, 2 - the section name
+		 * Then get the element's displayed value and compare it to the actual input value
+		 * That is:  masterList.get(2).get("Page Name") = gherkinPageName
+		 * And       masterList.get(2).get("Section") = gherkinSectionName
+		 * When calling the method below, just simply pass the argument above and the target element whose value is to be compared
+		 * example: compare_actual_input_value_to_dislayed_value (gherkinPageName, gherkinSectionName, gherkinElement)
+		 */
+		compare_actual_input_value_to_dislayed_value (gherkinPageName, gherkinSectionName);
+    }
+	
+	@Step
+	public void compare_actual_input_value_to_dislayed_value (String gherkinPageName, String gherkinSectionName)
 	{
+		/*
+		 * Look up the list for these two conditions: 1 - page name, 2 - the section name
+		 * Then get the element's displayed value and compare it to the actual input value
+		 * That is:  masterList.get(2).get("Page Name") = gherkinPageName
+		 * And       masterList.get(2).get("Section") = gherkinSectionName
+		 */
 		System.out.println("I am on the " + "\"" + masterList.get(2).get("Page Name") + "\"" + " page");
 		System.out.println("And I am at the " + "\"" + masterList.get(2).get("Section") + "\"" + " section");
 		
@@ -184,20 +205,29 @@ public class EndUserSteps extends ScenarioSteps {
 		
 		System.out.println("I compare the stored Email input = " + storedEmailAddress);
 		System.out.println("to the actual value of Email     = " + EmailAddressOnPage );
+		
 		try {
-			  //System.out.println("============================================");
+			  System.out.println("============================================");
 			  System.out.println("Result of comparison...");
-		      System.out.println("Actual Value On Page             => " + EmailAddressOnPage);
-		      System.out.println("Stored Value in input Data Table => " + storedEmailAddress);
+		      System.out.println("Actual Value On Page  => " + EmailAddressOnPage);
+		      System.out.println("Stored Value In Table => " + storedEmailAddress);
 		      Assert.assertEquals(EmailAddressOnPage,storedEmailAddress);
 	     } catch (Exception e) {
-		     System.out.println("  **** ERROR:   Element " + "\"" + EmailAddressOnPage + "\""+ " is NOT MATCHED ...");
-		     System.out.println("  ============================================");
-	 }
-}
-	
-
-	public void verifies_that_all_expected_elelments_are_displayed_on_the_page() throws Throwable {
-		currentPage.verifyThatAllExpectedElementsAreDisplayedOnPage(pageName);
+	    	  value_not_match(EmailAddressOnPage);
+	     }
 	}
+	
+	@Step("Field Value verification Error......")
+	public void value_not_match(String displayedValue)
+	{
+		System.err.println("**** ERROR:   Element " + "\"" + displayedValue + "\""+ " is NOT MATCHED ...");
+	}
+	
+	//@Step("I am at the EndUserSteps class")
+	@Step
+	public void verifyThatAllExpectedElementsAreDisplayedOnPage() 
+	{
+		currentPage.verifyThatAllExpectedElementsAreDisplayedOnPage(this.pageName);
+	}
+	
 }

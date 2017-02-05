@@ -1,5 +1,6 @@
 package auto.steps;
 
+import net.thucydides.core.annotations.Step;
 //import net.thucydides.core.annotations.Step;
 //import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
@@ -34,10 +35,10 @@ public class DefinitionSteps {
                user.lands_on_pageX(pageName);
     }
 
-   // @Step("MY SERENITY STEPS AT THE DEFINITION LEVEL.....")
+   //@Step
     @Then("^user verifies that all expected elelments are displayed on the page$")
     public void user_verifies_that_all_expected_elelments_are_displayed_on_the_page() throws Throwable{
-                user.verifies_that_all_expected_elelments_are_displayed_on_the_page();
+                user.verifyThatAllExpectedElementsAreDisplayedOnPage();
     }
    
    @When("^user enters \"([^\"]*)\" into the \"([^\"]*)\" input field$")
@@ -45,10 +46,15 @@ public class DefinitionSteps {
                user.enters_inputX_into_the_elementY_input_field(inputValue, gherkinElement);
    }
    
-   @When("^user verifies that all input data were conrrectly captured, saved and dislayed$")
-   public void user_verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed() throws Throwable {
-               user._verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed();
+   @Then("^on the \"([^\"]*)\" page, and at the \"([^\"]*)\" section, user verifies that all input data were conrrectly captured, saved and dislayed$")
+   public void on_the_page_and_at_the_section_user_verifies_that_all_input_data_were_conrrectly_captured_saved_and_dislayed(String gherkinPageName, String gherkinSectionName) throws Throwable {
+              user.on_the_page_and_at_the_section_user_verifies_that_all_input_data_were_conrrectly_captured_saved_and_dislayed(gherkinPageName, gherkinSectionName);
    }
+   
+//   @When("^user verifies that all input data were conrrectly captured, saved and dislayed$")
+//   public void user_verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed() throws Throwable {
+//               user._verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed();
+//   }
 
     @Given("^user verifies that, on the \"([^\"]*)\" table, the following record exists:$")
     public void he_verifies_that_on_the_tabel_this_record_exist(String tableName, DataTable recordRow) throws Throwable {
