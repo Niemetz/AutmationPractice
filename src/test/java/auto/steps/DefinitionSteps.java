@@ -23,34 +23,34 @@ public class DefinitionSteps {
     }
     
    // @Step
-    @When("^he clicks on the \"([^\"]*)\" (?:button|radio button|check box|.*?)$")
+    @When("^user clicks on the \"([^\"]*)\" (?:button|radio button|check box|.*?)$")
     public void user_clicks_on_elementX(String gherkinElement) throws Throwable {
                 user.clicks_on_elementX(gherkinElement);
     }
     
    // @Step
-    @Then("^he lands on the \"([^\"]*)\" page$")
+    @Then("^user lands on the \"([^\"]*)\" page$")
     public void user_lands_on_pageX(String pageName) throws Throwable {
                user.lands_on_pageX(pageName);
     }
 
    // @Step("MY SERENITY STEPS AT THE DEFINITION LEVEL.....")
-    @Then("^he verifies that all expected elelments are displayed on the page$")
+    @Then("^user verifies that all expected elelments are displayed on the page$")
     public void user_verifies_that_all_expected_elelments_are_displayed_on_the_page() throws Throwable{
                 user.verifies_that_all_expected_elelments_are_displayed_on_the_page();
     }
    
-   @When("^he enters \"([^\"]*)\" into the \"([^\"]*)\" input field$")
+   @When("^user enters \"([^\"]*)\" into the \"([^\"]*)\" input field$")
    public void user_enters_inputX_into_the_elementY_input_field(String inputValue, String gherkinElement) throws Throwable {
                user.enters_inputX_into_the_elementY_input_field(inputValue, gherkinElement);
    }
    
-   @When("^he verifies that all input data were conrrectly captured, saved and dislayed$")
+   @When("^user verifies that all input data were conrrectly captured, saved and dislayed$")
    public void user_verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed() throws Throwable {
                user._verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed();
    }
 
-    @Given("^he verifies that, on the \"([^\"]*)\" table, the following record exists:$")
+    @Given("^user verifies that, on the \"([^\"]*)\" table, the following record exists:$")
     public void he_verifies_that_on_the_tabel_this_record_exist(String tableName, DataTable recordRow) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         // For automatic transformation, change DataTable to one of

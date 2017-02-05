@@ -1,40 +1,41 @@
 package auto.pages;
 
-import org.junit.Assert;
-import org.openqa.selenium.Alert;
-
-import net.serenitybdd.core.pages.WebElementFacade;
-import net.thucydides.core.pages.PageObject;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-//import java.util.TreeMap;
+
+
+import org.junit.Assert;
+
+import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.pages.PageObject;
 
 public class AmazonBasePageObject extends PageObject {
        
-	// This table holds the input entries on ALL page
-	// Each entry is identified by the page name, a unique element ID on the page and its input value
-	// | page name | element ID | inputValue| 
+	// | page name | section ID | element ID | inputValue| 
+     public final static  Map< String,Map<String, Map<String, String>>> masterTable = new HashMap<>();
 
-	public static  Map<String, Map<String, String>> masterTable = new HashMap<>();
-	
-	// This table holds the input entries on a page
-	// Each entry is identified by a unique element ID on the page and its input value
-	// | element ID | inputValue |
-	protected  Map<String, String> allElementsAndTheirInputDataOnPageX = new HashMap<>();
+	// sectionID | element ID | inputValue |
+	final  Map<String,Map<String, String>> allElementsAndTheirInputDataOnPageX = new HashMap<>();
 	
 	// For login mapping
-	//protected  Map<String, String> loginMap = new HashMap<String, String>();
-	public  Map<String, String> loginMap = new HashMap<>();
-	
+	protected  Map<String,Map<String, String>> loginMap = new HashMap<>();
+
 	// This table holds the temporary ALL elements on A page
 	// Each entry is identified by a unique element ID and its location on the page
 	// | element ID | element location |
-	protected Map<String, String> mapTable = new HashMap<>();
+	//final Map<String, String> mapTable = new HashMap<>();
+	public final static Map<String, String> mapTable = new HashMap<>();
+	
+	// temp elementID and its value
+	//final Map<String, String> elementIDAndValue = new HashMap<>();
+	final HashMap<String, String> elementIDAndValue = new HashMap<>();
 
-
-	public Object allWebElementsUnderTest;
+	// My implementation of a TreeMap that contains a list
+	//Map<Double,List<Object>> multiMap = new TreeMap<Double,List<Object>>();
+	//Map<String, List<String>> multimap = new HashMap<String, List<String>>();
+	
 	
 	// This is the constructor of the Superclass page of all application pages
 	// It inherits the PageObjects Superclass from the Serenity framework
@@ -42,20 +43,13 @@ public class AmazonBasePageObject extends PageObject {
 	// The purpose of clearing the pageElementsTable is to save space in the memory.
 	public AmazonBasePageObject()
 	{
-		allElementsAndTheirInputDataOnPageX.clear();
-		mapTable.clear();
+		//allElementsAndTheirInputDataOnPageX.clear();
+		//mapTable.clear();
 	}
 	
 	// Get a single element on the page
 	public WebElementFacade getElement(String gherkinElement) 
 	{
-//		switch(classInstance)
-//		{
-//		case "home2" : 
-//			           HomePage2 home2 = new HomePage2();
-//			           home2.
-//			           
-// 		}
 		return $(mapTable.get(gherkinElement.toLowerCase())).waitUntilVisible().and().waitUntilEnabled() ; 
     }
 
@@ -89,39 +83,52 @@ public class AmazonBasePageObject extends PageObject {
 	// When an input action takes place, program will insert the input value to the tableOfAllPagesUnderTest
 	// The tableOfAllPagesUnderTest serves as the input holder so that it can be used to verify that
 	// program correctly saves and displays the input results after a save transaction took place.
-	public void insertIntoMasterTable(String pageName, String gherkinElement, String inputValue)
+	public void insertIntoMasterTable(String pageName, String sectionID, String gherkinElement, String inputValue)
 	{
 		
 		if(pageName.equalsIgnoreCase("login"))
 		{
-			loginMap.put(gherkinElement, inputValue);
-			masterTable.put(pageName, loginMap);
-			System.out.println("Insert into the \"Master Table\"..=> Page " + "\"" + pageName + "\": " + gherkinElement+ " = " +masterTable.get(pageName).get(gherkinElement));
+			elementIDAndValue.put(new String(gherkinElement), inputValue);
+			loginMap.put(new String(sectionID), elementIDAndValue);
+			masterTable.put(new String(pageName), loginMap);
+			String printcontent  = String.format("Insert into the \"Master Table\"...Page  = %s ->  Section = %s -> Element = %s -> Value = %s", pageName, sectionID, gherkinElement, masterTable.get(pageName).get(sectionID).get(gherkinElement)) ;
+			System.out.println(printcontent);
 		} 
 		else
 		{
 		// save the "target element name" and the "inputValue" to the "pageInputTable"
-		// | gherkinElement | inputValue |
-		allElementsAndTheirInputDataOnPageX.put(new String(gherkinElement), inputValue);
+		// sectionID| gherkinElement | inputValue |
+	    elementIDAndValue.put(new String(gherkinElement), inputValue);
+		allElementsAndTheirInputDataOnPageX.put(new String(sectionID), elementIDAndValue);
 			
 		// save the "pageInputTable" along with its "pageName" where it belongs to the "tableOfAllPagesUnderTest"
 		// | page name | gherkinElement | inputValue|
+		elementIDAndValue.put(new String(gherkinElement), inputValue);
+		allElementsAndTheirInputDataOnPageX.put(new String(sectionID), elementIDAndValue);
+		masterTable.put(new String(pageName), allElementsAndTheirInputDataOnPageX);
 		
-		masterTable.put(pageName, allElementsAndTheirInputDataOnPageX);
+		String printcontent  = String.format("Insert into the \"Master Table\"...Page  = %s ->  Section = %s -> Element = %s -> Value = %s", pageName, sectionID, gherkinElement, masterTable.get(pageName).get(sectionID).get(gherkinElement)) ;
+		System.out.println(printcontent);
 		
-
-		System.out.println("Insert into the \"Master Table\"..=> Page " + "\"" + pageName + "\": " + gherkinElement+ " = " +masterTable.get(pageName).get(gherkinElement));
 		} // End of If
 		
 		System.out.println("============================================");
-		System.out.println("Snapshot of \"Master Table\"..." );
-		for (Entry<String, Map<String, String>> entry : masterTable.entrySet()) {
+		System.out.println("Snapshot of \"Master Table\"... size = " + masterTable.size());
+		for (Entry<String,Map<String, Map<String, String>>> pageEntry : masterTable.entrySet()) {	
 			
-		    System.out.println("Container/Form = " + entry.getKey() + ":");
-		    for (Entry<String, String> entry2 : entry.getValue().entrySet()) {
-		    	System.out.println( "       " +entry2.getKey() + " = " +   entry2.getValue() );
+
+		    System.out.println("Page = " + pageEntry.getKey());
+		    
+		    for (Entry<String,Map<String, String>> sectionEntry : masterTable.get(pageEntry.getKey()).entrySet()) {
+		    	
+		    	System.out.println("Section  = " + sectionEntry.getKey());
+		    	
+		    	for (Entry<String, String> elementEntry : masterTable.get(pageEntry.getKey()).get(sectionEntry.getKey()).entrySet()) {
+			    	System.out.println("          * " + elementEntry.getKey() + " = "  + elementEntry.getValue());
+		    	
 		    }
 		    System.out.println("============================================");
 		}
+	  }
 	}
 }
