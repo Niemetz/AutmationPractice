@@ -28,7 +28,7 @@ public class AmazonBasePageObject extends PageObject {
 	// Each entry is identified by a unique element ID and its location on the page
 	// | element ID | element location |
 	//final Map<String, String> mapTable = new HashMap<>();
-	public final static Map<String, String> mapTable = new HashMap<>();
+	final static Map<String, String> mapTable = new HashMap<>();
 	
 	// temp elementID and its value
 	//final Map<String, String> elementIDAndValue = new HashMap<>();
@@ -61,6 +61,7 @@ public class AmazonBasePageObject extends PageObject {
 		int i = 0;
 		System.out.println("============================================");
 		System.out.println("Verifying all expected Elelments on the " + "\"" + pageName + "\"" + " page...");
+		//System.out.println("snapshot of login table... " +  mapTable);
 		//System.out.println("============================================");
 		for (Entry<String, String> entry : mapTable.entrySet())
 		{
