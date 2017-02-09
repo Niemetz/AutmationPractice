@@ -10,19 +10,20 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.PageObject;
 
-public class AmazonBasePageObject extends PageObject {
+public class AmazonBasePageObject extends PageObject 
+{
 
 	final static Map<String, String> mapTable = new HashMap<>();
 
-	public AmazonBasePageObject() {
-		// mapTable.clear();
+	public AmazonBasePageObject() 
+	{
+		mapTable.clear();
 	}
 
 	// Get a single element on the page
-	public WebElementFacade getElement(String gherkinElement) {
-
+	public WebElementFacade getElement(String gherkinElement) 
+	{
 		return $(mapTable.get(gherkinElement.toLowerCase())).waitUntilVisible().and().waitUntilEnabled();
-
 	}
 
 	@Step("I am at the  AmazonPbasePageObject class")
@@ -30,12 +31,9 @@ public class AmazonBasePageObject extends PageObject {
 		int i = 0;
 		System.out.println("============================================");
 		System.out.println("Verifying all expected Elelments on the " + "\"" + pageName + "\"" + " page...");
-		// System.out.println("snapshot of login table... " + mapTable);
-		// System.out.println("============================================");
 		for (Entry<String, String> entry : mapTable.entrySet()) {
 			if (!entry.getKey().equalsIgnoreCase("page unique element")) {
-				System.out.println(
-						"  " + ++i + ") " + "Verifying Element " + "\"" + entry.getKey() + "\"" + " is Displayed ... ");
+				System.out.println("  " + ++i + ") " + "Verifying Element " + "\"" + entry.getKey() + "\"" + " is Displayed ... ");
 				try {
 					Assert.assertNotNull($(entry.getValue()).waitUntilVisible().and().waitUntilEnabled());
 					System.out.println("  **** PASSED:   Element " + "\"" + entry.getKey() + "\"" + " FOUND ... ");

@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-//import org.apache.log4j.Logger;
 import org.junit.Assert;
-
-//import java.util.Map.Entry;
 import auto.pages.AccountMainPage;
 import auto.pages.AmazonBasePageObject;
 import auto.pages.HomePage;
@@ -34,10 +30,6 @@ public class EndUserSteps extends ScenarioSteps {
 	// test
 	public Map<String, AmazonBasePageObject> allPagesUnderTest = new HashMap<>();
 
-	// This table is used to store all the WebElementFacade under test
-	// public Map<String, WebElementFacade> allWebElementsUnderTest = new
-	// HashMap<>();
-
 	public EndUserSteps() {
 		this.pageName = null;
 		this.elementName = null;
@@ -52,18 +44,10 @@ public class EndUserSteps extends ScenarioSteps {
 		// go find the page ...
 		if (allPagesUnderTest.containsKey(pageName) == false) {
 			switch (pageName) {
-			case "home":
-				currentPage = getPages().getPage(HomePage.class);
-				break;
-			case "login":
-				currentPage = getPages().getPage(LoginPage.class);
-				break;
-			case "account main":
-				currentPage = getPages().getPage(AccountMainPage.class);
-				break;
-			case "your account":
-				currentPage = getPages().getPage(YourAccountPage.class);
-				break;
+			case "home": currentPage = getPages().getPage(HomePage.class); break;
+			case "login": currentPage = getPages().getPage(LoginPage.class); break;
+			case "account main": currentPage = getPages().getPage(AccountMainPage.class); break;
+			case "your account": currentPage = getPages().getPage(YourAccountPage.class); break;
 			default:
 				System.out.println(String.format("ERROR... Page %s NOT FOUND!!!", gherkinPageName));
 			}
