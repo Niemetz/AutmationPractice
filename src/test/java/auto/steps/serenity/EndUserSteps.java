@@ -2,7 +2,6 @@ package auto.steps.serenity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,27 +29,21 @@ public class EndUserSteps extends ScenarioSteps {
 	String sectionName;
 
 	List<Map<String, String>> masterList = new ArrayList<Map<String, String>>();
-	LinkedList<Map<String, String>> ll = new LinkedList<Map<String, String>>();
-
-	// This table is used to store the contents of a page which is extracted
-	// from the master table
-	public Map<String, Map<String, String>> retrievedPage = new HashMap<>();
 
 	// This table is used to store all the instance variables for pages under
 	// test
 	public Map<String, AmazonBasePageObject> allPagesUnderTest = new HashMap<>();
 
 	// This table is used to store all the WebElementFacade under test
-	public Map<String, WebElementFacade> allWebElementsUnderTest = new HashMap<>();
+	// public Map<String, WebElementFacade> allWebElementsUnderTest = new
+	// HashMap<>();
 
 	public EndUserSteps() {
 		this.pageName = null;
 		this.elementName = null;
-		this.retrievedPage = null;
 		this.targetElement = null;
 		this.currentPage = null;
 		this.sectionName = null;
-
 	}
 
 	public AmazonBasePageObject getCurrentPage(String gherkinPageName) {
@@ -84,36 +77,17 @@ public class EndUserSteps extends ScenarioSteps {
 
 	@Step
 	public void navigates_to_page(String gherkinPageName) throws Throwable {
-		// clear the contents of the tableOfAllPagesUnderTest in the Super Class
-		// AmazonBasePageObject.masterTable.clear();
-		this.pageName = gherkinPageName.toLowerCase();
-		currentPage = getCurrentPage(pageName);
+
+		currentPage = getCurrentPage(gherkinPageName);
 		currentPage.open();
 
 	}
 
 	public WebElementFacade targetElement(String gherkinElement) {
 
-		// this method serves two purposes:
-		// 1 - returns the target WebElementFacade
-		// 2 - registers the WebElementFacade to the webElementFacadeTable for
-		// later use.
-		this.elementName = gherkinElement.toLowerCase();
+		return currentPage.getElement(gherkinElement);
 
-		if (allWebElementsUnderTest.containsKey(elementName) == false
-				&& !elementName.equalsIgnoreCase("Page Unique Element"))
-			allWebElementsUnderTest.put(elementName, currentPage.getElement(elementName));
-		if (elementName.equalsIgnoreCase("Page Unique Element"))
-			return currentPage.getElement(elementName);
-		else
-			return allWebElementsUnderTest.get(elementName);
 	}
-
-	// // THIS IS WHERE THE GETELEMENT METHODS ARE DEFINED
-	// public WebElementFacade getElement(String gherkinElement) {
-	// this.elementName = gherkinElement.toLowerCase();
-	// return currentPage.getElement(gherkinElement);
-	// }
 
 	public void clicks_on_elementX(String gherkinElement) throws Throwable {
 		targetElement(gherkinElement).waitUntilVisible().and().waitUntilClickable().click();
@@ -169,12 +143,9 @@ public class EndUserSteps extends ScenarioSteps {
 	}
 
 	public void enters_inputX_into_the_elementY_input_field(String inputValue, String gherkinElement) throws Throwable {
-		// Enter the input into the input field
+
 		targetElement(gherkinElement).waitUntilVisible().and().waitUntilEnabled().sendKeys(inputValue);
 
-		// insert the elementName and the inputValue into the MasterPageTable
-		// currentPage.insertIntoMasterTable(pageName, sectionName,
-		// gherkinElement, inputValue);
 		System.out.println("============================================");
 		MainSection mainSection = new MainSection();
 		this.sectionName = "Main Login";
@@ -186,53 +157,22 @@ public class EndUserSteps extends ScenarioSteps {
 
 	@Step
 	public void verifies_that_all_input_were_conrrectly_captured_saved_and_dislayed() throws Throwable {
-		/*
-		 * Write the loop here to go thru all elements on the page Look up the
-		 * list for these two conditions: 1 - page name, 2 - the section name
-		 * Then get the element's displayed value and compare it to the actual
-		 * input value That is: masterList.get(2).get("Page Name") =
-		 * gherkinPageName And masterList.get(2).get("Section") =
-		 * gherkinSectionName When calling the method below, just simply pass
-		 * the argument above and the target element whose value is to be
-		 * compared example: compare_actual_input_value_to_dislayed_value
-		 * (gherkinPageName, gherkinSectionName, gherkinElement)
-		 */
+
 		compare_actual_input_value_to_dislayed_value(this.pageName, this.sectionName);
 	}
 
 	@Step
 	public void on_the_page_and_at_the_section_user_verifies_that_all_input_data_were_conrrectly_captured_saved_and_dislayed(
 			String gherkinPageName, String gherkinSectionName) throws Throwable {
-		/*
-		 * Write the loop here to go thru all elements on the page Look up the
-		 * list for these two conditions: 1 - page name, 2 - the section name
-		 * Then get the element's displayed value and compare it to the actual
-		 * input value That is: masterList.get(2).get("Page Name") =
-		 * gherkinPageName And masterList.get(2).get("Section") =
-		 * gherkinSectionName When calling the method below, just simply pass
-		 * the argument above and the target element whose value is to be
-		 * compared example: compare_actual_input_value_to_dislayed_value
-		 * (gherkinPageName, gherkinSectionName, gherkinElement)
-		 */
+
 		compare_actual_input_value_to_dislayed_value(gherkinPageName, gherkinSectionName);
 	}
 
 	@Step
 	public void compare_actual_input_value_to_dislayed_value(String gherkinPageName, String gherkinSectionName) {
-		/*
-		 * Look up the list for these two conditions: 1 - page name, 2 - the
-		 * section name Then get the element's displayed value and compare it to
-		 * the actual input value That is: masterList.get(2).get("Page Name") =
-		 * gherkinPageName And masterList.get(2).get("Section") =
-		 * gherkinSectionName
-		 */
+
 		System.out.println("I am on the " + "\"" + gherkinPageName + "\"" + " page");
 		System.out.println("And I am at the " + "\"" + gherkinSectionName + "\"" + " section");
-
-		// System.out.println("I am on the " + "\"" +
-		// masterList.get(2).get("Page Name") + "\"" + " page");
-		// System.out.println("And I am at the " + "\"" +
-		// masterList.get(2).get("Section") + "\"" + " section");
 
 		String storedEmailAddress = masterList.get(2).get("Email");
 		String EmailAddressOnPage = targetElement("Email").waitUntilVisible().and().waitUntilClickable().getTextValue();
