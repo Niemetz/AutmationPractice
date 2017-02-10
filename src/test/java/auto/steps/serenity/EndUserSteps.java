@@ -108,7 +108,8 @@ public class EndUserSteps extends ScenarioSteps {
 			inputList.add(inputEntry3);
 	
 			System.out.println("============================================");
-			System.out.println("I am on the " + "\"" + pageName + "\"" + " page, and at section " + "\"" + sectionName + "\"" + ", I set: ");
+			System.out.println(String.format("I am on the " + "\"" + "%s" + "\"" + " page, and at the "+ "\"" + "%s"  + "\"" +" section , I set: ", pageName, sectionName));
+
 			int i = 0;
 			for (InputEntry inputEntryIndex : inputList) {
 				System.out.println(++i +") " + inputEntryIndex.getElementName() + " = " + inputEntryIndex.getInputValue());
@@ -128,7 +129,7 @@ public class EndUserSteps extends ScenarioSteps {
 			inputList.add(inputEntry3);
 	
 			System.out.println("============================================");
-			System.out.println("I am on the " + "\"" + pageName + "\"" + " page, and at section " + "\"" + sectionName + "\"" + ", I set: ");
+			System.out.println(String.format("I am on the " + "\"" + "%s" + "\"" + " page, and at the "+ "\"" + "%s"  + "\"" +" section , I set: ", pageName, sectionName));
 			int j=0;
 			for (int i = 3; i < inputList.size(); i++) {
 				System.out.println(++j +") " + inputList.get(i).getElementName() + " = " + inputList.get(i).getInputValue());
@@ -169,8 +170,8 @@ public class EndUserSteps extends ScenarioSteps {
 		String EmailAddressOnPage = targetElement("Email").waitUntilVisible().and().waitUntilClickable().getTextValue();
 
 		
-		System.out.println("I compare the stored Email input      = " + storedEmailAddress);
-		System.out.println("to the actual value of Email on page  = " + EmailAddressOnPage);
+		System.out.println("I compare the stored Email input     = " + storedEmailAddress);
+		System.out.println("to the actual value of Email on page = " + EmailAddressOnPage);
 
 		try {
 			Assert.assertEquals(EmailAddressOnPage, storedEmailAddress);

@@ -39,7 +39,7 @@ public class AmazonBasePageObject extends PageObject
 					System.out.println("  **** PASSED:   Element " + "\"" + entry.getKey() + "\"" + " FOUND ... ");
 					System.out.println("  ============================================");
 				} catch (Exception e) {
-					error_Element_is_Not_On_Page(entry.getKey().toUpperCase());
+					error_Element_is_Not_On_Page(entry.getKey());
 				}
 			}
 		}

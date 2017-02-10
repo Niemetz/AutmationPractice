@@ -46,10 +46,8 @@ public class DefinitionSteps {
 	}
 
 	@Then("^on the \"([^\"]*)\" page, and at the \"([^\"]*)\" section, user verifies that all input data were conrrectly captured, saved and dislayed$")
-	public void on_the_page_and_at_the_section_user_verifies_that_all_input_data_were_conrrectly_captured_saved_and_dislayed(
-			String gherkinPageName, String gherkinSectionName) throws Throwable {
-		user.on_the_page_and_at_the_section_user_verifies_that_all_input_data_were_conrrectly_captured_saved_and_dislayed(
-				gherkinPageName, gherkinSectionName);
+	public void on_the_page_and_at_the_section_user_verifies_that_all_input_data_were_conrrectly_captured_saved_and_dislayed(String gherkinPageName, String gherkinSectionName) throws Throwable {
+		user.on_the_page_and_at_the_section_user_verifies_that_all_input_data_were_conrrectly_captured_saved_and_dislayed(gherkinPageName, gherkinSectionName);
 	}
 
 	@When("^user verifies that all input data were conrrectly captured, saved and dislayed$")
