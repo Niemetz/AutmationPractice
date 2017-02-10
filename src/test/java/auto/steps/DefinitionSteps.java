@@ -7,8 +7,8 @@ import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-//import net.thucydides.core.annotations.Step;
-//import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 
 public class DefinitionSteps {
@@ -33,7 +33,7 @@ public class DefinitionSteps {
 		user.lands_on_pageX(pageName);
 	}
 
-	// @Step
+	@Step
 	@Then("^user verifies that all expected elelments are displayed on the page$")
 	public void user_verifies_that_all_expected_elelments_are_displayed_on_the_page() throws Throwable {
 		user.verifyThatAllExpectedElementsAreDisplayedOnPage();

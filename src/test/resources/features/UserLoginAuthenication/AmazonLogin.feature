@@ -11,7 +11,7 @@ Feature: Amazon User login Authentication
     When user enters "John.Nguyen@yahoo.com" into the "Email" input field
     And user enters "John The Gardener" into the "Password" input field
     #Then user verifies that all input data were conrrectly captured, saved and dislayed
-    Then on the "Login" page, and at the "Main Login" section, user verifies that all input data were conrrectly captured, saved and dislayed
+    Then on the "Login" page, and at the "Main" section, user verifies that all input data were conrrectly captured, saved and dislayed
     
     #And user lands on the "Account Main" page
     #And user clicks on the "Sign in" button

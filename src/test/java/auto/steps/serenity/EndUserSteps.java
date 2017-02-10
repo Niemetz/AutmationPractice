@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.junit.Assert;
+
 import auto.pages.AccountMainPage;
 import auto.pages.AmazonBasePageObject;
 import auto.pages.HomePage;
 import auto.pages.LoginPage;
 import auto.pages.YourAccountPage;
-import auto.util.MainSection;
+import auto.util.InputEntry;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
@@ -20,14 +22,16 @@ public class EndUserSteps extends ScenarioSteps {
 
 	String pageName;
 	String elementName;
+	String sectionName;
+	
 	WebElementFacade targetElement;
 	AmazonBasePageObject currentPage;
-	String sectionName;
+	
+	
+    // a list that contains the input entries
+	List<InputEntry> inputList = new ArrayList<InputEntry>();
 
-	List<Map<String, String>> masterList = new ArrayList<Map<String, String>>();
-
-	// This table is used to store all the instance variables for pages under
-	// test
+	// This table is used to store all the instance variables for pages under test
 	public Map<String, AmazonBasePageObject> allPagesUnderTest = new HashMap<>();
 
 	public EndUserSteps() {
@@ -56,7 +60,8 @@ public class EndUserSteps extends ScenarioSteps {
 		}
 
 		// return the found page to the caller
-		return currentPage = allPagesUnderTest.get(pageName);
+		return allPagesUnderTest.get(pageName);
+
 	}
 
 	@Step
@@ -91,52 +96,55 @@ public class EndUserSteps extends ScenarioSteps {
 		currentPage = getCurrentPage(pageName);
 
 		if (pageName.equalsIgnoreCase("home")) {
-			MainSection mainSection = new MainSection();
+			
 			sectionName = "ISA Markings for Indicator";
-			mainSection.getMainSection().put(new String("Page Name"), pageName);
-			mainSection.getMainSection().put(new String("Section"), sectionName);
-			mainSection.getMainSection().put(new String("Released To Public"), "Yes");
-			mainSection.getMainSection().put(new String("Display"), "Yes");
-			mainSection.getMainSection().put(new String("Intelligence Analysis"), "No");
-			masterList.add(mainSection.getMainSection());
+			InputEntry inputEntry1 = new InputEntry(pageName, sectionName, "Released To Public", "Yes");
+			inputList.add(inputEntry1);
+			
+			InputEntry inputEntry2 = new InputEntry(pageName, sectionName, "Display", "Yes");
+			inputList.add(inputEntry2);
+			
+			InputEntry inputEntry3 = new InputEntry(pageName, sectionName, "Intelligence Analysis", "No");
+			inputList.add(inputEntry3);
+	
 			System.out.println("============================================");
-			// System.out.println(masterList.get(0).containsValue(sectionName));
-			System.out.println("I am on the " + "\"" + masterList.get(0).get("Page Name") + "\". I set:");
-			System.out.println("Released To Public    = " + masterList.get(0).get("Released To Public"));
-			System.out.println("Display               = " + masterList.get(0).get("Display"));
-			System.out.println("Intelligence Analysis = " + masterList.get(0).get("Intelligence Analysis"));
+			System.out.println("I am on the " + "\"" + pageName + "\"" + " page, and at section " + "\"" + sectionName + "\"" + ", I set: ");
+			int i = 0;
+			for (InputEntry inputEntryIndex : inputList) {
+				System.out.println(++i +") " + inputEntryIndex.getElementName() + " = " + inputEntryIndex.getInputValue());
+            }
+
 		}
 		if (pageName.toLowerCase().equalsIgnoreCase("login")) {
 
-			MainSection mainSection = new MainSection();
-			sectionName = "ISA Markings for Type Field";
-			mainSection.getMainSection().put(new String("Page Name"), pageName);
-			mainSection.getMainSection().put(new String("Section"), sectionName);
-			mainSection.getMainSection().put(new String("Released To Public"), "No");
-			mainSection.getMainSection().put(new String("Display"), "No");
-			mainSection.getMainSection().put(new String("Intelligence Analysis"), "Yes");
-			masterList.add(mainSection.getMainSection());
+			sectionName = "ISA Markings for Title";
+			InputEntry inputEntry1 = new InputEntry(pageName, sectionName, "Released To Public", "No");
+			inputList.add(inputEntry1);
+			
+			InputEntry inputEntry2 = new InputEntry(pageName, sectionName, "Display", "No");
+			inputList.add(inputEntry2);
+			
+			InputEntry inputEntry3 = new InputEntry(pageName, sectionName, "Intelligence Analysis", "Yes");
+			inputList.add(inputEntry3);
+	
 			System.out.println("============================================");
-			// System.out.println(masterList.get(1).containsValue("ISA Markings
-			// for Type Field"));
-			System.out.println("I am on the " + "\"" + masterList.get(1).get("Page Name") + "\". I set:");
-			System.out.println("Released To Public    = " + masterList.get(1).get("Released To Public"));
-			System.out.println("Display               = " + masterList.get(1).get("Display"));
-			System.out.println("Intelligence Analysis = " + masterList.get(1).get("Intelligence Analysis"));
+			System.out.println("I am on the " + "\"" + pageName + "\"" + " page, and at section " + "\"" + sectionName + "\"" + ", I set: ");
+			int j=0;
+			for (int i = 3; i < inputList.size(); i++) {
+				System.out.println(++j +") " + inputList.get(i).getElementName() + " = " + inputList.get(i).getInputValue());
+            }
 		}
 	}
 
 	public void enters_inputX_into_the_elementY_input_field(String inputValue, String gherkinElement) throws Throwable {
 
 		targetElement(gherkinElement).waitUntilVisible().and().waitUntilEnabled().sendKeys(inputValue);
-
-		System.out.println("============================================");
-		MainSection mainSection = new MainSection();
+		
 		this.sectionName = "Main Login";
-		mainSection.getMainSection().put(new String("Page Name"), this.pageName);
-		mainSection.getMainSection().put(new String("Section"), this.sectionName);
-		mainSection.getMainSection().put(new String(gherkinElement), inputValue);
-		masterList.add(mainSection.getMainSection());
+		
+		InputEntry inputEntry = new InputEntry(pageName, sectionName, gherkinElement, inputValue);
+		inputList.add(inputEntry);
+
 	}
 
 	@Step
@@ -148,28 +156,31 @@ public class EndUserSteps extends ScenarioSteps {
 	@Step
 	public void on_the_page_and_at_the_section_user_verifies_that_all_input_data_were_conrrectly_captured_saved_and_dislayed(
 			String gherkinPageName, String gherkinSectionName) throws Throwable {
-
+		
+		System.out.println("I'm at the " + gherkinPageName + " page and at the " + gherkinSectionName + " section");
+		
 		compare_actual_input_value_to_dislayed_value(gherkinPageName, gherkinSectionName);
 	}
 
 	@Step
 	public void compare_actual_input_value_to_dislayed_value(String gherkinPageName, String gherkinSectionName) {
 
-		System.out.println("I am on the " + "\"" + gherkinPageName + "\"" + " page");
-		System.out.println("And I am at the " + "\"" + gherkinSectionName + "\"" + " section");
-
-		String storedEmailAddress = masterList.get(2).get("Email");
+		String storedEmailAddress = inputList.get(6).getInputValue();
 		String EmailAddressOnPage = targetElement("Email").waitUntilVisible().and().waitUntilClickable().getTextValue();
 
-		System.out.println("I compare the stored Email input = " + storedEmailAddress);
-		System.out.println("to the actual value of Email     = " + EmailAddressOnPage);
+		
+		System.out.println("I compare the stored Email input      = " + storedEmailAddress);
+		System.out.println("to the actual value of Email on page  = " + EmailAddressOnPage);
 
 		try {
+			Assert.assertEquals(EmailAddressOnPage, storedEmailAddress);
+			
 			System.out.println("============================================");
 			System.out.println("Result of comparison...");
+			System.out.println("*** PASSED:");
 			System.out.println("Actual Value On Page  => " + EmailAddressOnPage);
 			System.out.println("Stored Value In Table => " + storedEmailAddress);
-			Assert.assertEquals(EmailAddressOnPage, storedEmailAddress);
+
 		} catch (Exception e) {
 			value_not_match(EmailAddressOnPage);
 		}
@@ -177,7 +188,7 @@ public class EndUserSteps extends ScenarioSteps {
 
 	@Step("Field Value Verification Error......")
 	public void value_not_match(String displayedValue) {
-		System.err.println("**** ERROR:   Element " + "\"" + displayedValue + "\"" + " is NOT MATCHED ...");
+		System.err.println("**** FAILED:   Element " + "\"" + displayedValue + "\"" + " is NOT MATCHED ...");
 	}
 
 	// @Step("I am at the EndUserSteps class")
