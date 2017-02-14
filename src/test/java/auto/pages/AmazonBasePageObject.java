@@ -13,7 +13,7 @@ import net.thucydides.core.pages.PageObject;
 public class AmazonBasePageObject extends PageObject 
 {
 
-	final static Map<String, String> mapTable = new HashMap<>();
+	public final static Map<String, String> mapTable = new HashMap<>();
 
 	public AmazonBasePageObject() 
 	{

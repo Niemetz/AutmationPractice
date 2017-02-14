@@ -1,5 +1,3 @@
-
-// I want to see this change
 package auto.steps.serenity;
 
 import java.util.ArrayList;
@@ -136,6 +134,13 @@ public class EndUserSteps extends ScenarioSteps {
 			for (int i = 3; i < inputList.size(); i++) {
 				System.out.println(++j +") " + inputList.get(i).getElementName() + " = " + inputList.get(i).getInputValue());
             }
+			
+			System.out.println("============================================");
+			System.out.println("contents of the input list...");
+			for (int i = 0; i < inputList.size(); i++) {
+				System.out.println(i +") Section: "+ inputList.get(i).getSectionName() + " => " + inputList.get(i).getElementName() + " = " + inputList.get(i).getInputValue());
+
+		    }
 		}
 	}
 
@@ -194,8 +199,8 @@ public class EndUserSteps extends ScenarioSteps {
 		System.err.println("**** FAILED:   Element " + "\"" + displayedValue + "\"" + " is NOT MATCHED ...");
 	}
 
-	// @Step("I am at the EndUserSteps class")
-	@Step
+	//@Step("I am at the EndUserSteps class")
+	//@Step
 	public void verifyThatAllExpectedElementsAreDisplayedOnPage() {
 		currentPage.verifyThatAllExpectedElementsAreDisplayedOnPage(this.pageName);
 	}
