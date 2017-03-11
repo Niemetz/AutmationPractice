@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions( 
-		features={"src/test/resources/features"}
+		features={"src/test/resources/features/UserLoginAuthentication"}
 		//,tags={"@Login-As-Admin-User, @Verify-Elements-On-Account-Main"}
 		,tags={"@Amazon-User-Login"}
 		)

@@ -46,6 +46,7 @@ public class EndUserSteps extends ScenarioSteps {
 		this.pageName = gherkinPageName.toLowerCase();
 		// if the requested page is new to the list of all page under test, then
 		// go find the page ...
+
 		if (allPagesUnderTest.containsKey(pageName) == false) {
 			switch (pageName) {
 			case "home": currentPage = getPages().getPage(HomePage.class); break;
@@ -80,6 +81,7 @@ public class EndUserSteps extends ScenarioSteps {
 
 	public void clicks_on_elementX(String gherkinElement) throws Throwable {
 		targetElement(gherkinElement).waitUntilVisible().and().waitUntilClickable().click();
+		
 	}
 
 	public void lands_on_pageX(String gherkinPageName) throws Throwable {
