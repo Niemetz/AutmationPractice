@@ -27,7 +27,7 @@ public class EndUserSteps extends ScenarioSteps {
 	WebElementFacade targetElement;
 	AmazonBasePageObject currentPage;
 	
-	// Test to see if this note get to the development branch
+	// Test to see where it uploaded?  Is it the tab?
     // a list that contains the input entries
 	List<InputEntry> inputList = new ArrayList<InputEntry>();
 
