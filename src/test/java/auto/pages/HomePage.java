@@ -14,7 +14,7 @@ public class HomePage extends AmazonBasePageObject
 			mapTable.put("Account & Lists".toLowerCase(),".//*[@id='nav-link-accountList']/span[2]");
 			mapTable.put("Page Unique Element".toLowerCase(), "#a-autoid-0-announce");	
 			// Add a comment to the HomePage file
-			// Someone update this file and I want to download this to my LocalDevelopmentBranch
+			// Update1 the latest update ... want to see this update downloaded to my LocalDevelopmentBranch
 		}
 }
 
