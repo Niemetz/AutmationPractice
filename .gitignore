@@ -1,1 +1,12 @@
+/bin/*
+*.class
+pom.xml
+.classpath
+.DS_Store
+.project
+build.gradle
+build.properties
+log4j.properties
+serenity.properties
+/target/*
 /target/
