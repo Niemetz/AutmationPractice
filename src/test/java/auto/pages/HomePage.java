@@ -13,6 +13,8 @@ public class HomePage extends AmazonBasePageObject
 			mapTable.put("Sign in securely".toLowerCase(),"#a-autoid-0-announce");
 			mapTable.put("Account & Lists".toLowerCase(),".//*[@id='nav-link-accountList']/span[2]");
 			mapTable.put("Page Unique Element".toLowerCase(), "#a-autoid-0-announce");	
-			// Update #4 by John to Remote Development Branch....
+
+			// Update #9 by John to Remote Master Branch...
+
 		}
 }
