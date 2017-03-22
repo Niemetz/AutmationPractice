@@ -14,7 +14,7 @@ public class HomePage extends AmazonBasePageObject
 			mapTable.put("Account & Lists".toLowerCase(),".//*[@id='nav-link-accountList']/span[2]");
 			mapTable.put("Page Unique Element".toLowerCase(), "#a-autoid-0-announce");	
 
-			// Update #9 by John to Remote Master Branch...
+			// Update #10 by John to Remote Master Branch...
 
 		}
 }
