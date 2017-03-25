@@ -1,0 +1,7 @@
+Admin Module => High-Level Requirements set
+
+1 - Requirement ID = 80. The admin user shall have the rights to manage any type of users.
+
+2 - Requirement ID = 81. The admin user shall have the rights to manage any type of groups.
+
+3 - Requirement ID = 82. The admin user shall have the rights to manage any ACS Sets.

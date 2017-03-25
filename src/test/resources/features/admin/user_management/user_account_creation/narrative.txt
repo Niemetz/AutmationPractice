@@ -1,0 +1,1 @@
+Requirement ID = 80. The Admin User Shall Have The Rights To Manage Any Type Of Users
