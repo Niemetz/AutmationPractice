@@ -2,7 +2,7 @@
 @version:GD-Release-6.5.0-RC-1
 @wip
 Feature: Requirement ID = 80.2. Administrator should have the rights to create a new user-account for analyst-2 user.
-         In ordcer to grant access to an analyst-2 user to CIAP Application
+         In order to grant access to an analyst-2 user to CIAP Application
          As the CIAP adminstrator
          I should have the rights to create an user account for analyst-2 user
  @Creation-Of-User-Analyst-2
