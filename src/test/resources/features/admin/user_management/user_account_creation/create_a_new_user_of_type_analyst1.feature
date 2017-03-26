@@ -1,6 +1,7 @@
 @version:Vencore-Sprint-6.5.0-RC-1
 @version:GD-Release-6.5.0-RC-1
 Feature: Requirement ID = 80.1. Administrator should have the rights to create a new user-account for analyst-1 user.
+         Acceptance Criteria:
          In order to grant access to an analyst-1 user to CIAP Application
          As the CIAP adminstrator
          I should have the rights to create an user account for analyst-1 user
