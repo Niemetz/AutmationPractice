@@ -1,9 +1,9 @@
 @version:Vencore-Sprint-6.5.0-RC-1
 @version:GD-Release-6.5.0-RC-1
 Feature: Requirement ID = 80.1. Administrator should have the rights to create a new user-account for analyst-1 user.
-         As the CIAP Admin user
-         I should be able to create a new user of type Analyst 1
-         So that the user can access to CIAP app and performs his works.
+         In ordcer to grant access to an analyst-1 user to CIAP Application
+         As the CIAP adminstrator
+         I should have the rights to create an user account for analyst-1 user
  @Creation-Of-User-Analyst-1
   Scenario: creation of Analyst-1 user
     Given user navigates to Amazon "Home" website
