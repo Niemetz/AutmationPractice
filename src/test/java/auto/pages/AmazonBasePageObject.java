@@ -23,8 +23,10 @@ public class AmazonBasePageObject extends PageObject
 	// Get a single element on the page
 	public WebElementFacade getElement(String gherkinElement) 
 	{
+		
+		$(mapTable.get(gherkinElement.toLowerCase()));
 		return $(mapTable.get(gherkinElement.toLowerCase())).waitUntilVisible().and().waitUntilEnabled();
-	}
+    }
 
 	@Step("I am at the  AmazonPbasePageObject class")
 	public void verifyThatAllExpectedElementsAreDisplayedOnPage(String pageName) {

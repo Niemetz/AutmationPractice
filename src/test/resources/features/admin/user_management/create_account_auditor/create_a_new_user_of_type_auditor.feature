@@ -1,13 +1,13 @@
 @version:Vencore-Sprint-6.5.0-RC-1
 @version:GD-Release-6.5.0-RC-1
-@wip
-Feature: Requirement ID = 80.2. Administrator should have the rights to create a new user-account for analyst-2 user.
+@pending
+Feature: Requirement ID = 80.3 Administrator should have the rights to create a new user-account for Auditor user.
          Acceptance Criteria:
-         In order to grant access to an analyst-2 user to CIAP Application
+         In order to grant access to an auditor user to CIAP Application
          As the CIAP adminstrator
-         I should have the rights to create an user account for analyst-2 user
- @Creation-Of-User-Analyst-2
-  Scenario: creation of Analyst-2 user
+         I should have the rights to create an user account for auditor user
+ @Creation-Of-User-Auditor
+  Scenario: creation of Auditor user
     Given user navigates to Amazon "Home" website
     Then user lands on the "Home" page
     And  user verifies that all expected elelments are displayed on the page
