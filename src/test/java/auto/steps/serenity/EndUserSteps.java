@@ -13,6 +13,7 @@ import auto.pages.HomePage;
 import auto.pages.LoginPage;
 import auto.pages.YourAccountPage;
 import auto.util.InputEntry;
+import cucumber.api.DataTable;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
@@ -205,5 +206,18 @@ public class EndUserSteps extends ScenarioSteps {
 	public void verifyThatAllExpectedElementsAreDisplayedOnPage() {
 		currentPage.verifyThatAllExpectedElementsAreDisplayedOnPage(this.pageName);
 	}
+	
+	public void fills_out_the_form_wiht_the_followng_data(DataTable recordRow) throws Throwable {
+		
+		List<List<String>> table = recordRow.raw();
 
+		System.out.println("row size =" + table.size());
+		for (int i = 2; i < table.size(); i++) {
+			System.out.println(i + "-  Action = " + table.get(i).get(0) + " | " + "input = "+ table.get(i).get(1) + " | " + "Target Element = "+ table.get(i).get(2)) ;
+		}
+	}
+
+	public void user_is_on_the_page(String gherkinPage) throws Throwable {
+
+	}
 }

@@ -69,4 +69,15 @@ public class DefinitionSteps {
 			System.out.println(wholeRow.get(i).get(0) + " = " + wholeRow.get(i).get(1));
 		}
 	}
+	@Given("^user fills out the form with the followng data:$")
+	public void user_fills_out_the_form_wiht_the_followng_data(DataTable recordRow) throws Throwable {
+		
+	     user.fills_out_the_form_wiht_the_followng_data(recordRow);
+	}
+	
+	@Given("^user is on the \"([^\"]*)\" page$")
+	public void user_is_on_the_page(String gherkinPage) throws Throwable {
+
+	}
+	
 }
