@@ -1,7 +1,9 @@
 package auto.pages;
 
-public class LoginPage extends AmazonBasePageObject {
-	public LoginPage() {
+public class LoginPage extends AmazonBasePageObject 
+{
+	public LoginPage() 
+	{
 		super();
 		mapTable.clear();
 		mapTable.put("Sign in".toLowerCase(), "#signInSubmit");

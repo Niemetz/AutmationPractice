@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.junit.Assert;
 
+import com.google.common.collect.ImmutableMap;
+
 import auto.pages.AccountMainPage;
 import auto.pages.AmazonBasePageObject;
 import auto.pages.HomePage;
@@ -14,6 +16,7 @@ import auto.pages.LoginPage;
 import auto.pages.YourAccountPage;
 import auto.util.InputEntry;
 import cucumber.api.DataTable;
+import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
@@ -32,7 +35,7 @@ public class EndUserSteps extends ScenarioSteps {
 	List<InputEntry> inputList = new ArrayList<InputEntry>();
 
 	// This table is used to store all the instance variables for pages under test
-	public Map<String, AmazonBasePageObject> allPagesUnderTest = new HashMap<>();
+	private static final Map<String, AmazonBasePageObject> allPagesUnderTest = new HashMap<>();
 
 	public EndUserSteps() {
 		this.pageName = null;
@@ -42,58 +45,47 @@ public class EndUserSteps extends ScenarioSteps {
 		this.sectionName = null;
 	}
 
-	public AmazonBasePageObject getCurrentPage(String gherkinPageName) {
-		this.pageName = gherkinPageName.toLowerCase();
-		// if the requested page is new to the list of all page under test, then
-		// go find the page ...
-
-		if (allPagesUnderTest.containsKey(pageName) == false) {
-			switch (pageName) {
-			case "home": currentPage = getPages().getPage(HomePage.class); break;
-			case "login": currentPage = getPages().getPage(LoginPage.class); break;
-			case "account main": currentPage = getPages().getPage(AccountMainPage.class); break;
-			case "your account": currentPage = getPages().getPage(YourAccountPage.class); break;
-			default:
-				System.out.println(String.format("ERROR... Page %s NOT FOUND!!!", gherkinPageName));
+	public AmazonBasePageObject getCurrentPage(String gherkinPageName) 
+	{
+		
+		// if the desired page was not registered in the allPageUnderTest, 
+		// then add the desired page to the allPageUnderTest.
+		this.pageName = gherkinPageName;
+		if (!allPagesUnderTest.containsKey(pageName)) 
+		{
+			switch (pageName) 
+			{
+			  case "home": allPagesUnderTest.put(new String(pageName), getPages().getPage(HomePage.class));break;	         
+			  case "login": allPagesUnderTest.put(new String(pageName), getPages().getPage(LoginPage.class));break;
+			  case "account main": allPagesUnderTest.put(new String(pageName), getPages().getPage(AccountMainPage.class));break;
+			  case "your account": allPagesUnderTest.put(new String(pageName), getPages().getPage(YourAccountPage.class));break;
+			  default:
+				      System.out.println(String.format("ERROR... Page %s NOT FOUND!!!", gherkinPageName));
+				      return null;
 			}
-			// ... then add the new page to the list of all pages under test
-			allPagesUnderTest.put(new String(pageName), currentPage);
 		}
-
-		// return the found page to the caller
+		// return the desired page to the caller
 		return allPagesUnderTest.get(pageName);
-
 	}
 
 	@Step
 	public void navigates_to_page(String gherkinPageName) throws Throwable {
-
 		currentPage = getCurrentPage(gherkinPageName);
 		currentPage.open();
-
 	}
 
-	public WebElementFacade targetElement(String gherkinElement) {
-
-		return currentPage.getElement(gherkinElement);
-
+	public WebElementFacade getElement(String gherkinElement) {
+		return allPagesUnderTest.get(pageName).getElement(gherkinElement);
 	}
 
 	public void clicks_on_elementX(String gherkinElement) throws Throwable {
-		targetElement(gherkinElement).waitUntilVisible().and().waitUntilClickable().click();
+		allPagesUnderTest.get(pageName).getElement(gherkinElement).waitUntilVisible().and().waitUntilClickable().click();
 		
 	}
 
 	public void lands_on_pageX(String gherkinPageName) throws Throwable {
 
 		this.pageName = gherkinPageName.toLowerCase();
-
-		// If the new page, then register it to the allPagesUnderTest
-		if (allPagesUnderTest.containsKey(pageName) == false)
-			allPagesUnderTest.put(pageName, getCurrentPage(pageName));
-
-		// get the current page from the allPagesUnderTest
-		this.currentPage = allPagesUnderTest.get(pageName);
 
 		currentPage = getCurrentPage(pageName);
 
@@ -148,7 +140,7 @@ public class EndUserSteps extends ScenarioSteps {
 
 	public void enters_inputX_into_the_elementY_input_field(String inputValue, String gherkinElement) throws Throwable {
 
-		targetElement(gherkinElement).waitUntilVisible().and().waitUntilEnabled().sendKeys(inputValue);
+		getElement(gherkinElement).waitUntilVisible().and().waitUntilEnabled().sendKeys(inputValue);
 		
 		this.sectionName = "Main Login";
 		
@@ -176,7 +168,7 @@ public class EndUserSteps extends ScenarioSteps {
 	public void compare_actual_input_value_to_dislayed_value(String gherkinPageName, String gherkinSectionName) {
 
 		String storedEmailAddress = inputList.get(6).getInputValue();
-		String EmailAddressOnPage = targetElement("Email").waitUntilVisible().and().waitUntilClickable().getTextValue();
+		String EmailAddressOnPage = getElement("Email").waitUntilVisible().and().waitUntilClickable().getTextValue();
 
 		
 		System.out.println("I compare the stored Email input     = " + storedEmailAddress);
@@ -204,7 +196,8 @@ public class EndUserSteps extends ScenarioSteps {
 	//@Step("I am at the EndUserSteps class")
 	//@Step
 	public void verifyThatAllExpectedElementsAreDisplayedOnPage() {
-		currentPage.verifyThatAllExpectedElementsAreDisplayedOnPage(this.pageName);
+		allPagesUnderTest.get(pageName).verifyThatAllExpectedElementsAreDisplayedOnPage(this.pageName);
+	    //currentPage.verifyThatAllExpectedElementsAreDisplayedOnPage(this.pageName);
 	}
 	
 	public void fills_out_the_form_wiht_the_followng_data(DataTable recordRow) throws Throwable {

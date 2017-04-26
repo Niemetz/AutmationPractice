@@ -1,6 +1,7 @@
 package auto.pages;
 
-public class YourAccountPage extends AmazonBasePageObject {
+public class YourAccountPage extends AmazonBasePageObject 
+{
 	
 	public YourAccountPage()
 	{

@@ -2,7 +2,7 @@ package auto.pages;
 
 import net.thucydides.core.annotations.DefaultUrl;
 
- @DefaultUrl("https://www.amazon.com") 
+@DefaultUrl("https://www.amazon.com") 
 
 public class HomePage extends AmazonBasePageObject 
 {
@@ -10,11 +10,8 @@ public class HomePage extends AmazonBasePageObject
 		{
 			super() ;
 			mapTable.clear();
-			mapTable.put("Sign in securely".toLowerCase(),"#a-autoid-0-announce");
+			mapTable.put("Sign in securely".toLowerCase(),"#a-autoid-0-announce>span");
 			mapTable.put("Account & Lists".toLowerCase(),".//*[@id='nav-link-accountList']/span[2]");
-			mapTable.put("Page Unique Element".toLowerCase(), "#a-autoid-0-announce");	
-
-			// Update #10 by John to Remote Master Branch...
-
+			mapTable.put("Page Unique Element".toLowerCase(), "#a-autoid-0-announce>span");
 		}
 }

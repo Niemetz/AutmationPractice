@@ -13,10 +13,11 @@ public class DefinitionSteps {
 
 	@Steps
 	EndUserSteps user;
+	
 
 	@Given("^user navigates to Amazon \"([^\"]*)\" website$")
 	public void user_navigates_to_Amazon_website(String gherkinPageName) throws Throwable {
-		user.navigates_to_page(gherkinPageName);
+		user.navigates_to_page(gherkinPageName.toLowerCase());
 	}
 
 	// @Step
@@ -27,8 +28,8 @@ public class DefinitionSteps {
 
 	// @Step
 	@Then("^user lands on the \"([^\"]*)\" page$")
-	public void user_lands_on_pageX(String pageName) throws Throwable {
-		user.lands_on_pageX(pageName);
+	public void user_lands_on_pageX(String gherkinPageName) throws Throwable {
+		user.lands_on_pageX(gherkinPageName.toLowerCase());
 	}
 
 	@Step
