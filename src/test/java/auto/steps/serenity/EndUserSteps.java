@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.junit.Assert;
-
-import com.google.common.collect.ImmutableMap;
-
 import auto.pages.AccountMainPage;
 import auto.pages.AmazonBasePageObject;
 import auto.pages.HomePage;
@@ -16,7 +12,6 @@ import auto.pages.LoginPage;
 import auto.pages.YourAccountPage;
 import auto.util.InputEntry;
 import cucumber.api.DataTable;
-import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
@@ -38,6 +33,7 @@ public class EndUserSteps extends ScenarioSteps {
 	private static final Map<String, AmazonBasePageObject> allPagesUnderTest = new HashMap<>();
 
 	public EndUserSteps() {
+		super() ;
 		this.pageName = null;
 		this.elementName = null;
 		this.targetElement = null;
@@ -50,15 +46,15 @@ public class EndUserSteps extends ScenarioSteps {
 		
 		// if the desired page was not registered in the allPageUnderTest, 
 		// then add the desired page to the allPageUnderTest.
-		this.pageName = gherkinPageName;
+		this.pageName = gherkinPageName.toLowerCase();
 		if (!allPagesUnderTest.containsKey(pageName)) 
 		{
 			switch (pageName) 
 			{
-			  case "home": allPagesUnderTest.put(new String(pageName), getPages().getPage(HomePage.class));break;	         
-			  case "login": allPagesUnderTest.put(new String(pageName), getPages().getPage(LoginPage.class));break;
-			  case "account main": allPagesUnderTest.put(new String(pageName), getPages().getPage(AccountMainPage.class));break;
-			  case "your account": allPagesUnderTest.put(new String(pageName), getPages().getPage(YourAccountPage.class));break;
+			  case "home": allPagesUnderTest.put(new String(pageName), getPages().get(HomePage.class));break;	         
+			  case "login": allPagesUnderTest.put(new String(pageName), getPages().get(LoginPage.class));break;
+			  case "account main": allPagesUnderTest.put(new String(pageName), getPages().get(AccountMainPage.class));break;
+			  case "your account": allPagesUnderTest.put(new String(pageName), getPages().get(YourAccountPage.class));break;
 			  default:
 				      System.out.println(String.format("ERROR... Page %s NOT FOUND!!!", gherkinPageName));
 				      return null;

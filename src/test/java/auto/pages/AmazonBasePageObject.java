@@ -9,26 +9,19 @@ import org.junit.Assert;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.PageObject;
-import net.thucydides.core.pages.Pages;
-import net.thucydides.core.steps.ScenarioSteps;
-
 
 public class AmazonBasePageObject extends PageObject 
 {
-	public final static Map<String, String> mapTable = new HashMap<>();
+	protected final static Map<String, String> mapTable = new HashMap<>();
 	
-	public AmazonBasePageObject() 
-	{
-		mapTable.clear();
-
-	}
-
+    public AmazonBasePageObject()
+    {
+    	mapTable.clear();
+    }
 
 	// Get a single element on the page
 	public WebElementFacade getElement(String gherkinElement) 
 	{
-		//System.out.println("Element Name =" + gherkinElement);
-		//System.out.println("This is the desired element =" + mapTable.get(gherkinElement));
 		return $(mapTable.get(gherkinElement.toLowerCase())).waitUntilPresent().and().waitUntilVisible();
     }
 

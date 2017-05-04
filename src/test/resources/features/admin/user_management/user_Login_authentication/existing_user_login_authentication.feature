@@ -5,8 +5,8 @@ Feature: Requirement ID = 80.3 An Amazon existing user is able to log on to his/
          As an amazone existing cusomter
          I should have be able to log on to my account
          In order to purchase things that I like
- @Amazon-User-Login-Authentication
-  Scenario: Amazon User Login Authentication
+@Amazon-User-Login-Authentication
+Scenario: Amazon User Login Authentication
     Given user navigates to Amazon "Home" website
     Then user lands on the "Home" page
     And  user verifies that all expected elelments are displayed on the page
