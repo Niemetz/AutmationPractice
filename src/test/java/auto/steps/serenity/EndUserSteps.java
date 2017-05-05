@@ -7,10 +7,10 @@ import java.util.Map;
 import org.junit.Assert;
 import auto.pages.AmazonBasePageObject;
 
-import auto.pages.AccountMainPage;
-import auto.pages.HomePage;
-import auto.pages.LoginPage;
-import auto.pages.YourAccountPage;
+//import auto.pages.AccountMainPage;
+//import auto.pages.HomePage;
+//import auto.pages.LoginPage;
+//import auto.pages.YourAccountPage;
 
 import auto.util.InputEntry;
 import cucumber.api.DataTable;
