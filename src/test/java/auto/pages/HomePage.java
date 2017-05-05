@@ -14,5 +14,4 @@ public class HomePage extends AmazonBasePageObject
 			mapTable.put("Account & Lists".toLowerCase(),".//*[@id='nav-link-accountList']/span[2]");
 			mapTable.put("Page Unique Element".toLowerCase(), "#a-autoid-0-announce>span");
 		}
-
 }

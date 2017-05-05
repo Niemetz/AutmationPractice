@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.junit.Assert;
-import auto.pages.AccountMainPage;
 import auto.pages.AmazonBasePageObject;
+
+import auto.pages.AccountMainPage;
 import auto.pages.HomePage;
 import auto.pages.LoginPage;
 import auto.pages.YourAccountPage;
+
 import auto.util.InputEntry;
 import cucumber.api.DataTable;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -31,6 +33,9 @@ public class EndUserSteps extends ScenarioSteps {
 
 	// This table is used to store all the instance variables for pages under test
 	private static final Map<String, AmazonBasePageObject> allPagesUnderTest = new HashMap<>();
+	
+	// This table contains all application pages
+	private static final Map<String, String> appPages = new HashMap<>();
 
 	public EndUserSteps() {
 		super() ;
@@ -39,27 +44,38 @@ public class EndUserSteps extends ScenarioSteps {
 		this.targetElement = null;
 		this.currentPage = null;
 		this.sectionName = null;
+		
+		appPages.put("home", "auto.pages.HomePage");
+		appPages.put("login", "auto.pages.LoginPage");
+		appPages.put("account main", "auto.pages.AccountMainPage");
+		appPages.put("your account", "auto.pages.YourAccountPage");
 	}
 
-	public AmazonBasePageObject getCurrentPage(String gherkinPageName) 
+	@SuppressWarnings("unchecked")
+	public AmazonBasePageObject getCurrentPage(String gherkinPageName) throws ClassNotFoundException 
 	{
-		
 		// if the desired page was not registered in the allPageUnderTest, 
 		// then add the desired page to the allPageUnderTest.
 		this.pageName = gherkinPageName.toLowerCase();
 		if (!allPagesUnderTest.containsKey(pageName)) 
 		{
-			switch (pageName) 
-			{
-			  case "home": allPagesUnderTest.put(new String(pageName), getPages().get(HomePage.class));break;	         
-			  case "login": allPagesUnderTest.put(new String(pageName), getPages().get(LoginPage.class));break;
-			  case "account main": allPagesUnderTest.put(new String(pageName), getPages().get(AccountMainPage.class));break;
-			  case "your account": allPagesUnderTest.put(new String(pageName), getPages().get(YourAccountPage.class));break;
-			  default:
-				      System.out.println(String.format("ERROR... Page %s NOT FOUND!!!", gherkinPageName));
-				      return null;
-			}
+		    @SuppressWarnings("rawtypes")
+		    Class targetPageClass = Class.forName(appPages.get(pageName));
+			allPagesUnderTest.put(new String(pageName),  (AmazonBasePageObject) getPages().get(targetPageClass));
 		}
+//		if (!allPagesUnderTest.containsKey(pageName)) 
+//		{
+//			switch (pageName) 
+//			{
+//			  case "home": allPagesUnderTest.put(new String(pageName), getPages().get(HomePage.class));break;	         
+//			  case "login": allPagesUnderTest.put(new String(pageName), getPages().get(LoginPage.class));break;
+//			  case "account main": allPagesUnderTest.put(new String(pageName), getPages().get(AccountMainPage.class));break;
+//			  case "your account": allPagesUnderTest.put(new String(pageName), getPages().get(YourAccountPage.class));break;
+//			  default:
+//				      System.out.println(String.format("ERROR... Page %s NOT FOUND!!!", gherkinPageName));
+//				      return null;
+//			}
+//		}
 		// return the desired page to the caller
 		return allPagesUnderTest.get(pageName);
 	}
