@@ -11,7 +11,6 @@ import net.thucydides.core.steps.ScenarioSteps;
 public class EndUserSteps extends ScenarioSteps {
 
 	String pageName;
-	
 	AmazonBasePageObject currentPage;
 
 	// This table is used to store all the instance variables for pages under test
@@ -62,4 +61,9 @@ public class EndUserSteps extends ScenarioSteps {
 		currentPage.getElement(gherkinElement).waitUntilVisible().and().waitUntilEnabled().sendKeys(gherkinInputValue);
 
 	}
+
+	public void verifyThatAllExpectedElementsAreDisplayedOnPage() {
+		currentPage.verifyThatAllExpectedElementsAreDisplayedOnPage(this.pageName);
+	}
+	
 }
