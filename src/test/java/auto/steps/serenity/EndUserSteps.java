@@ -3,6 +3,7 @@ package auto.steps.serenity;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 
@@ -53,7 +54,6 @@ public class EndUserSteps extends ScenarioSteps {
 	
 	public void clicks_on_elementX(String gherkinElement) throws Throwable {
 		currentPage.getElement(gherkinElement).waitUntilVisible().and().waitUntilClickable().click();
-
 	}
 
 	public void lands_on_pageX(String gherkinPageName) throws Throwable {
@@ -64,7 +64,6 @@ public class EndUserSteps extends ScenarioSteps {
 
 	public void enters_inputX_into_the_elementY_input_field(String gherkinInputValue, String gherkinElement) throws Throwable {
 		currentPage.getElement(gherkinElement).waitUntilVisible().and().waitUntilEnabled().sendKeys(gherkinInputValue);
-
 	}
 
 	public void verifyThatAllExpectedElementsAreDisplayedOnPage() {
@@ -76,7 +75,8 @@ public class EndUserSteps extends ScenarioSteps {
            action.moveToElement(currentPage.getElement(accountAndLists)).build().perform();
 	}
 	
-	public void clicks_on_the_link_from_the_menu(String gherkinElement, String gherkinMenu) throws Throwable {
-		currentPage.getElement(gherkinMenu).findElement(By.xpath("//span[contains(text(), '"+gherkinElement+"')]")).click(); 
+	public void clicks_on_the_link_from_the_menu(String gherkinElement, String gherkinMenu) throws Throwable 
+	{
+			currentPage.getElement(gherkinMenu).findElement(By.linkText(gherkinElement)).click();
 	}
 }
