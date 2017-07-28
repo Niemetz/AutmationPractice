@@ -10,7 +10,9 @@ Scenario: Amazon User Login Authentication
     Given user navigates to Amazon "Home" website
     Then user lands on the "Home" page
     And  user verifies that all expected elelments are displayed on the page 
-    When user clicks on the "Sign in securely" button
+    When user moves the cursor over the "Account & Lists" button
+    Then user lands on the "Account & Lists" page
+    When user clicks on the "Your Orders" link from the "Your Account" menu
     Then user lands on the "Login" page
     And  user verifies that all expected elelments are displayed on the page
     When user enters "John.Nguyen@yahoo.com" into the "Email" input field

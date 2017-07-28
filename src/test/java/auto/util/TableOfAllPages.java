@@ -11,10 +11,10 @@ public class TableOfAllPages extends ScenarioSteps {
 	private static final Map<String, String> appPages = new HashMap<>();
 	
 	public TableOfAllPages() {
-		appPages.put("home", "auto.pages.HomePage");
-		appPages.put("login", "auto.pages.LoginPage");
-		appPages.put("account main", "auto.pages.AccountMainPage");
-		appPages.put("your account", "auto.pages.YourAccountPage");
+		appPages.put("home".toLowerCase(), "auto.pages.HomePage");
+		appPages.put("login".toLowerCase(), "auto.pages.LoginPage");
+		appPages.put("account main".toLowerCase(), "auto.pages.AccountMainPage");
+		appPages.put("Account & Lists".toLowerCase(), "auto.pages.AccountAndListsSection");
 	}
 
 	@SuppressWarnings("rawtypes")

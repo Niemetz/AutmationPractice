@@ -20,7 +20,7 @@ public class DefinitionSteps {
 	}
 
 	// @Step
-	@When("^user clicks on the \"([^\"]*)\" (?:button|radio button|check box|.*?)$")
+	@When("^user clicks on the \"([^\"]*)\" (?:button|radio button|check box)$")
 	public void user_clicks_on_elementX(String gherkinElement) throws Throwable {
 		user.clicks_on_elementX(gherkinElement);
 	}
@@ -41,6 +41,13 @@ public class DefinitionSteps {
 	public void user_verifies_that_all_expected_elelments_are_displayed_on_the_page() throws Throwable 
 	{
 		user.verifyThatAllExpectedElementsAreDisplayedOnPage();
-
+	}
+	@When("^user moves the cursor over the \"([^\"]*)\" button$")
+	public void moves_the_cursor_over_the_X_Element(String accountAndLists) throws Throwable {
+		user.moves_the_cursor_over_the_X_Element(accountAndLists);
+	}
+	@When("^user clicks on the \"([^\"]*)\" link from the \"([^\"]*)\" menu$")
+	public void user_clicks_on_the_link_from_the_menu(String gherkinElement, String gherkinMenu) throws Throwable {
+        user.clicks_on_the_link_from_the_menu(gherkinElement, gherkinMenu);
 	}
 }

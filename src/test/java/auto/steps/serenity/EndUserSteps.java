@@ -2,6 +2,10 @@ package auto.steps.serenity;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
+
 import auto.pages.AmazonBasePageObject;
 import auto.util.TableOfAllPages;
 import net.thucydides.core.annotations.Step;
@@ -49,6 +53,7 @@ public class EndUserSteps extends ScenarioSteps {
 	
 	public void clicks_on_elementX(String gherkinElement) throws Throwable {
 		currentPage.getElement(gherkinElement).waitUntilVisible().and().waitUntilClickable().click();
+
 	}
 
 	public void lands_on_pageX(String gherkinPageName) throws Throwable {
@@ -66,4 +71,12 @@ public class EndUserSteps extends ScenarioSteps {
 		currentPage.verifyThatAllExpectedElementsAreDisplayedOnPage(this.pageName);
 	}
 	
+	public void moves_the_cursor_over_the_X_Element(String accountAndLists) throws Throwable {
+           Actions action = new Actions(getDriver());
+           action.moveToElement(currentPage.getElement(accountAndLists)).build().perform();
+	}
+	
+	public void clicks_on_the_link_from_the_menu(String gherkinElement, String gherkinMenu) throws Throwable {
+		currentPage.getElement(gherkinMenu).findElement(By.xpath("//span[contains(text(), '"+gherkinElement+"')]")).click(); 
+	}
 }
