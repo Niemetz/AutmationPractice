@@ -17,7 +17,7 @@ public class EndUserSteps extends ScenarioSteps {
 	String pageName;
 	AmazonBasePageObject currentPage;
 
-	// This table is used to store all the instance variables for pages under test
+	// This table is used to store all the instance variables for pages under BinarySearchTree
 	private static final Map<String, AmazonBasePageObject> allPagesUnderTest = new HashMap<>();
 	
 	// This table contains all pages of the app
