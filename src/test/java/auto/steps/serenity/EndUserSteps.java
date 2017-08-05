@@ -101,13 +101,11 @@ public class EndUserSteps extends ScenarioSteps  {
 	
 	public void clicks_on_the_link_from_the_menu(String gherkinElement, String gherkinMenu) throws Throwable 
 	{    
-		     WebElementFacade  targetElemet = null;
 		     String startTime =  getCurrentLocalDateTimeStamp();
 		     
 		     List<WebElementFacade> listContents = currentPage.getElement(gherkinMenu).thenFindAll("a span");
-		     targetElemet = listContents.get(listContents.size()-1);
-		     if(targetElemet.getText().equalsIgnoreCase(gherkinElement))
-		    	 targetElemet.click();
+		     if(listContents.get(listContents.size()-1).getText().equalsIgnoreCase(gherkinElement))
+		    	 listContents.get(listContents.size()-1).click();
 		     
 		     
 //		     listContents.get(listContents.size()-1).click();
