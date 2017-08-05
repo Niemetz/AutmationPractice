@@ -12,7 +12,7 @@ Scenario: Amazon User Login Authentication
     And  user verifies that all expected elelments are displayed on the page 
     When user moves the cursor over the "Account & Lists" button
     Then user lands on the "Account & Lists" page
-    When user clicks on the "Your Orders" link from the "Your Account" menu
+    When user clicks on the "Your Android Apps & Devices" link from the "Your Account" menu
     Then user lands on the "Login" page
     And  user verifies that all expected elelments are displayed on the page
     When user enters "John.Nguyen@yahoo.com" into the "Email" input field

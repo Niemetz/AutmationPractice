@@ -1,19 +1,32 @@
 package auto.steps.serenity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
-import org.junit.Assert;
+import org.jruby.RubyProcess.Sys;
 import org.openqa.selenium.By;
+
 import org.openqa.selenium.interactions.Actions;
 
 import auto.pages.AmazonBasePageObject;
 import auto.util.TableOfAllPages;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 
 @SuppressWarnings("serial")
-public class EndUserSteps extends ScenarioSteps {
+public class EndUserSteps extends ScenarioSteps  {
 
 	String pageName;
 	AmazonBasePageObject currentPage;
@@ -75,8 +88,41 @@ public class EndUserSteps extends ScenarioSteps {
            action.moveToElement(currentPage.getElement(accountAndLists)).build().perform();
 	}
 	
+	public String getCurrentLocalDateTimeStamp() {
+	    return LocalDateTime.now()
+	           .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+	}
+	public int totalTime(String startTime, String endTime) {
+	   int totalTime = Integer.parseInt(endTime.split("\\.")[1]) - Integer.parseInt(startTime.split("\\.")[1]);
+	   if(totalTime < 0)
+		   totalTime = totalTime + 1000;
+	    return totalTime;
+	}
+	
 	public void clicks_on_the_link_from_the_menu(String gherkinElement, String gherkinMenu) throws Throwable 
-	{
-			currentPage.getElement(gherkinMenu).findElement(By.linkText(gherkinElement)).click();
+	{    
+		     WebElementFacade  targetElemet = null;
+		     String startTime =  getCurrentLocalDateTimeStamp();
+		     
+		     List<WebElementFacade> listContents = currentPage.getElement(gherkinMenu).thenFindAll("a span");
+		     targetElemet = listContents.get(listContents.size()-1);
+		     if(targetElemet.getText().equalsIgnoreCase(gherkinElement))
+		    	 targetElemet.click();
+		     
+		     
+//		     listContents.get(listContents.size()-1).click();
+//		     for(WebElementFacade item : listContents)
+//		     {
+//		    	 //System.out.println("Element Text = " + item.getText());
+//		    	 if(item.getText().equalsIgnoreCase(gherkinElement))
+//		    	 {
+//		    		 item.click();
+//		    		 break;
+//		    	 }
+//		     }
+		
+	        //currentPage.getElement(gherkinMenu).findElement(By.linkText(gherkinElement)).click(); 
+	        String endTime = getCurrentLocalDateTimeStamp();
+	        System.out.println("Total Time Taken to search the list = " + totalTime(startTime, endTime) + "ms");
 	}
 }

@@ -9,8 +9,7 @@ public class HomePage extends AmazonBasePageObject
 		public HomePage()
 		{
 			mapTable.clear();
-			//mapTable.put("Sign in".toLowerCase(),".//*[@id='nav-flyout-ya-signin']/a/span");
-			mapTable.put("Account & Lists".toLowerCase(),".//*[@id='nav-link-accountList']/span[2]");
-			mapTable.put("Page Unique Element".toLowerCase(), ".//*[@id='nav-link-accountList']/span[2]");
+			mapTable.put("Account & Lists".toLowerCase(),".//*[contains(text(),'Account & Lists')]"); 
+			mapTable.put("Page Unique Element".toLowerCase(), ".//*[contains(text(),'Account & Lists')]");
 		}
 }
