@@ -1,3 +1,4 @@
+# Can I see this message?
 @version:Sprint-6.5.0-RC-1 
 @version:GD-Release-6.5.0-RC-1
 Feature: Requirement ID = 80.3 I AM FUTURE ENHANCEMENT ....An Amazon existing user is able to log on to his/her account
@@ -11,9 +12,7 @@ Feature: Requirement ID = 80.3 I AM FUTURE ENHANCEMENT ....An Amazon existing us
     Given user navigates to Amazon "Home" website
     Then user lands on the "Home" page
     And user verifies that all expected elelments are displayed on the page
-    When user clicks on the "Sign in securely" button
-    #Then user lands on the "Account & Lists" page
-    #When user clicks on the "Your Android Apps & Devices" link from the "Your Account" menu
+    When user clicks on the "Hello, Sign in" button
     Then user lands on the "Login" page
     And user verifies that all expected elelments are displayed on the page
     When user enters "John.Nguyen@yahoo.com" into the "Email" input field
