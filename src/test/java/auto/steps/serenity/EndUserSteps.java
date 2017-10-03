@@ -123,4 +123,10 @@ public class EndUserSteps extends ScenarioSteps  {
 	        String endTime = getCurrentLocalDateTimeStamp();
 	        System.out.println("Total Time Taken to search the list = " + totalTime(startTime, endTime) + "ms");
 	}
+	
+	public void verifies_that_the_value_of_the_field_is(String gherkinElement, String gherkinValue) throws Throwable 
+	{
+		String actualValue = currentPage.getElement(gherkinElement).waitUntilVisible().getText();  
+		System.out.println("Found... Field " + "\"" + gherkinElement + "\"" + "\'s value is: " + actualValue);
+	}
 }

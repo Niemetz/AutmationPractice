@@ -50,4 +50,10 @@ public class DefinitionSteps {
 	public void user_clicks_on_the_link_from_the_menu(String gherkinElement, String gherkinMenu) throws Throwable {
         user.clicks_on_the_link_from_the_menu(gherkinElement, gherkinMenu);
 	}
+	
+	@Then("^user verifies that the value of the \"([^\"]*)\" field is \"([^\"]*)\"$")
+	public void user_verifies_that_the_value_of_the_field_is(String gherkinElement, String gherkinValue) throws Throwable {
+                user.verifies_that_the_value_of_the_field_is(gherkinElement, gherkinValue);
+	}
+
 }
