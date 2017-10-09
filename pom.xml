@@ -91,6 +91,9 @@
                  <version>2.18.1</version> 
                  <configuration> 
                      <skip>true</skip> 
+                        <!--  includes>
+                           <include>**/*TestSuite.*</include>
+                        </includes -->
                  </configuration> 
              </plugin> 
              <plugin> 
@@ -98,7 +101,7 @@
                  <version>2.18.1</version> 
                  <configuration> 
                      <includes> 
-                         <include>**/FutureLoginRunnerTestSuite.java</include> 
+                         <include>**/UserProfileManagementTestSuite.java</include> 
                      </includes> 
                      <argLine>-Xmx512m</argLine> 
                      <!--  systemPropertyVariables> 
