@@ -6,8 +6,8 @@
      <artifactId>autoMap</artifactId>  
      <version>1.0-SNAPSHOT</version> 
      <packaging>jar</packaging> 
-     <!-- Update the Master Head with this new portion --> 
-     <name>Amazon Login Automation</name> 
+     <!-- Update the project name --> 
+     <name>Automation Practice Project</name> 
  
  
      <!-- Add this command to the configuration file --> 
