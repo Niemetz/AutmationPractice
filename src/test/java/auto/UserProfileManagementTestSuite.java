@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions( 
 		features={"src/test/resources/features/admin/user_management/user_Login_authentication"}
 		,plugin = {"html:target/MyTest"}
-		,tags={"@History-And-Details"}
+		,tags={"@History-And-Details"} 
 		)
 public class UserProfileManagementTestSuite {
 
