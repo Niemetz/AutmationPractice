@@ -1,7 +1,0 @@
-Admin Module => Epic(High-Level) Requirements set
-
-1 - Requirement ID = UPM 1 -> User Profile Management
-
-2 - Requirement ID = ACM 2 -> Access Control Management
-
-3 - Requirement ID = BCM 3 -> User's buying Cart Management
