@@ -11,7 +11,7 @@
 # - User can access to his/her user profile
 # Post Condition
 # - User can view his/her order history and details
-#  Check in revision 11
+#  Check in revision 12
 @Test_Cycle:Regression_Release_1.0_RC_1.0 
 @version:Build_Release_1.0_RC_1.0
 Feature: View order history and details
