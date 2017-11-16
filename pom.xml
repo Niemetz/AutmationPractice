@@ -9,7 +9,6 @@
 
      <name>Automation Practice Project</name> 
  
- 
      <!-- Add this command to the configuration file --> 
      <!-- clean verify serenity:aggregate -Dmaven.test.failure.ignore=true --> 
      <!-- serenity.browser.height = 1150 --> 
