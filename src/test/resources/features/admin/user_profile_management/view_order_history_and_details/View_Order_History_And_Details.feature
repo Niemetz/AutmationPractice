@@ -1,4 +1,4 @@
-# Author: John Nguyen
+ # Author: John Nguyen
 #############################################
 # Epic Requirement ID  = UPM_1 (ARM-10)  -> User Profile Management 
 # Story Requirement ID = UPM_1.9 (ARM-18) -> View Order History And Details 
@@ -11,13 +11,13 @@
 # - User can access to his/her user profile
 # Post Condition
 # - User can view his/her order history and details
-#  Check in test 2
+#
 
 @Test_Cycle:Regression_Release_1.0_RC_1.0 
 @version:Build_Release_1.0_RC_1.0
 Feature: View order history and details
 
-  @History-And-Details
+  @View-History-And-Details
   Scenario: user is able to view his/her order history and details
     Given user navigates to Amazon "Home" website
     Then user lands on the "Home" page
