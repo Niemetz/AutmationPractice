@@ -71,8 +71,11 @@ public class EndUserSteps extends ScenarioSteps  {
 
 	public void lands_on_pageX(String gherkinPageName) throws Throwable {
 		this.pageName = gherkinPageName.toLowerCase();
-		currentPage =  getCurrentPage(pageName);
+		currentPage =  getCurrentPage(this.pageName);
 		currentPage.getElement("page unique element");
+		System.out.println("Current Page         = " + currentPage);
+		System.out.println("Elelment's CSS Path  = " + currentPage.getElement("page unique element"));
+		
 	}
 
 	public void enters_inputX_into_the_elementY_input_field(String gherkinInputValue, String gherkinElement) throws Throwable {
@@ -128,5 +131,10 @@ public class EndUserSteps extends ScenarioSteps  {
 	{
 		String actualValue = currentPage.getElement(gherkinElement).waitUntilVisible().getText();  
 		System.out.println("Found... Field " + "\"" + gherkinElement + "\"" + "\'s value is: " + actualValue);
+	}
+	
+	public void user_logs_out() throws Exception {
+		getDriver().close();
+
 	}
 }

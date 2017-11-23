@@ -22,7 +22,10 @@ public class AmazonBasePageObject extends PageObject
 	// Get a single element on the page
 	public WebElementFacade getElement(String gherkinElement) 
 	{
-		return $(mapTable.get(gherkinElement.toLowerCase())).waitUntilPresent().and().waitUntilVisible();
+		return $(mapTable.get(gherkinElement.toLowerCase()))
+				.waitUntilPresent()
+				.and().waitUntilVisible()
+				.and().waitUntilEnabled();
     }
 
 	@Step("I am at the  AmazonPbasePageObject class")

@@ -55,5 +55,9 @@ public class DefinitionSteps {
 	public void user_verifies_that_the_value_of_the_field_is(String gherkinElement, String gherkinValue) throws Throwable {
                 user.verifies_that_the_value_of_the_field_is(gherkinElement, gherkinValue);
 	}
+	@Then("^user logs out$")
+	public void user_logs_out() throws Exception {
+           user.user_logs_out();
+	}
 
 }
