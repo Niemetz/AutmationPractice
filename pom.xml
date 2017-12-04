@@ -102,11 +102,9 @@
                  <configuration> 
                      <includes> 
                          <include>**/UserProfileManagementTestSuite.java</include> 
+                         <!-- include>**/ChangeAddressTestSuite.java</include  --> 
                      </includes> 
                      <argLine>-Xmx512m</argLine> 
-                     <!--  systemPropertyVariables> 
-                         <webdriver.driver>${webdriver.driver}</webdriver.driver> 
-                     </systemPropertyVariables> -->
                  </configuration> 
                  <executions> 
                      <execution> 
