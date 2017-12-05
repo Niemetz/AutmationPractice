@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions( 
 		features={"src/test/resources/features/admin/user_profile_management"}
 		//,plugin = {"junit:target/JunitReport"}
-		,tags={"@View-History-And-Details, @Change_Addresses"} 
+		,tags={"@View-History-And-Details, @Change_Addresses" } 
 		)
 public class UserProfileManagementTestSuite {
 
