@@ -7,8 +7,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions( 
-		features={"src/test/resources/features/admin/user_profile_management"}
+		features={"src/test/resources/features/admin"}
 		//,plugin = {"junit:target/JunitReport"}
+		//,tags={"@View-History-And-Details, @Change_Addresses"}
 		,tags={"@View-History-And-Details, @Change_Addresses"} 
 		)
 public class UserProfileManagementTestSuite {
