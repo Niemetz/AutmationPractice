@@ -7,6 +7,6 @@ pom.xml
 build.gradle
 build.properties
 log4j.properties
-serenity.properties
+org*
 /target/*
 /target/
