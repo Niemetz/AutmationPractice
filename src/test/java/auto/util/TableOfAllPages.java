@@ -15,6 +15,7 @@ public class TableOfAllPages extends ScenarioSteps {
 		appPages.put("login".toLowerCase(), "auto.pages.LoginPage");
 		appPages.put("My Account".toLowerCase(), "auto.pages.AccountProfilePage");
 		appPages.put("Order History".toLowerCase(), "auto.pages.OrderHistoryPage");
+		appPages.put("My Address".toLowerCase(), "auto.pages.MyAddressPage");
 	}
 
 	@SuppressWarnings("rawtypes")
