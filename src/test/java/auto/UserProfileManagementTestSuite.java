@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 		features={"src/test/resources/features/admin"}
 		//,plugin = {"junit:target/JunitReport"}
 		//,tags={"@View-History-And-Details, @Change_Addresses"}
-		,tags={"@View-History-And-Details , @Change_Addresses"} 
+		,tags={"@View-History-And-Details , @Change_Addresses" } 
 		)
 public class UserProfileManagementTestSuite {
 
