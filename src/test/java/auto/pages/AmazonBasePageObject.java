@@ -7,12 +7,11 @@ import java.util.Map.Entry;
 import org.junit.Assert;
 
 import net.serenitybdd.core.pages.WebElementFacade;
-import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.PageObject;
 
 public class AmazonBasePageObject extends PageObject 
 {
-	protected final static Map<String, String> mapTable = new HashMap<>();
+	protected final Map<String, String> mapTable = new HashMap<>();
 	
     public AmazonBasePageObject()
     {
@@ -22,10 +21,12 @@ public class AmazonBasePageObject extends PageObject
 	// Get a single element on the page
 	public WebElementFacade getElement(String gherkinElement) 
 	{
-		return $(mapTable.get(gherkinElement.toLowerCase())).waitUntilPresent().and().waitUntilVisible();
+		return $(mapTable.get(gherkinElement.toLowerCase()))
+				.waitUntilPresent()
+				.and().waitUntilVisible()
+				.and().waitUntilEnabled();
     }
 
-	@Step("I am at the  AmazonPbasePageObject class")
 	public void verifyThatAllExpectedElementsAreDisplayedOnPage(String pageName) 
 	{
 		int i = 0;
@@ -49,10 +50,10 @@ public class AmazonBasePageObject extends PageObject
 	    }
      }
 
-	@Step("Error.... Element not Found on Page !!!")
 	public void error_Element_is_Not_On_Page(String element) 
 	{
 		System.err.println("  **** FAILED:   Element " + "\"" + element + "\"" + " is NOT FOUND ...");
 		System.out.println("  ============================================");
 	}
 }
+
