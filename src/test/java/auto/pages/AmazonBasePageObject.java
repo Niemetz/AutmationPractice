@@ -28,7 +28,6 @@ public class AmazonBasePageObject extends PageObject
 				.and().waitUntilEnabled();
     }
 
-	@Step("I am at the  AmazonPbasePageObject class")
 	public void verifyThatAllExpectedElementsAreDisplayedOnPage(String pageName) 
 	{
 		int i = 0;
@@ -52,7 +51,6 @@ public class AmazonBasePageObject extends PageObject
 	    }
      }
 
-	@Step("Error.... Element not Found on Page !!!")
 	public void error_Element_is_Not_On_Page(String element) 
 	{
 		System.err.println("  **** FAILED:   Element " + "\"" + element + "\"" + " is NOT FOUND ...");
