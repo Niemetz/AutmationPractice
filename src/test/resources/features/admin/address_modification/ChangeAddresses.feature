@@ -17,7 +17,7 @@
 #  Test 1
 @Test_Cycle:Regression_Release_1.0_RC_1.0 
 @version:Build_Release_1.0_RC_1.0 
-Feature: Address modification
+Feature: Address modification 
 
   @Address-Change
   Scenario: user is able to edit/modify his/her addresses
