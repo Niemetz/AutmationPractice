@@ -129,4 +129,9 @@ public class EndUserSteps extends ScenarioSteps  {
 		String actualValue = currentPage.getElement(gherkinElement).waitUntilVisible().getText();  
 		System.out.println("Found... Field " + "\"" + gherkinElement + "\"" + "\'s value is: " + actualValue);
 	}
+	
+	public void user_logs_out() throws Exception {
+		getDriver().close();
+
+	}
 }

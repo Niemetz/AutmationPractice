@@ -35,3 +35,4 @@ Feature: Address modification
     When user clicks on the "MY ADDRESSES" button
     Then user lands on the "My Address" page
     And user verifies that all expected elelments are displayed on the page
+    Then user logs out
