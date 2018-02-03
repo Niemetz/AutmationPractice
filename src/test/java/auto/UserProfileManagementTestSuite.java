@@ -8,9 +8,8 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions( 
 		features={"src/test/resources/features/admin"}
-		//,plugin = {"junit:target/JunitReport"}
-		//,tags={"@View-History-And-Details, @Change_Addresses"}
-		,tags={"@View-History-And-Details , @Address-Change" } 
+		//,tags={"@View-History-And-Details or @Address-Change" } 
+		,tags={ "@View-History-And-Details, @Address-Change" } 
 		)
 public class UserProfileManagementTestSuite {
 
