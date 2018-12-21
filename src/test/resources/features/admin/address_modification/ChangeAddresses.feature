@@ -14,7 +14,8 @@
 # - User can access to his/her user profile
 # Post Condition
 # - User can view his/her order history and details
-#  Test 7
+#  John makde some code changes to this source code file.....
+
 @Test_Cycle:Regression_Release_1.0_RC_1.0 
 @version:Build_Release_1.0_RC_1.0 
 Feature: Address modification
