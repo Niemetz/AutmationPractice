@@ -6,10 +6,10 @@ import java.util.Map;
 
 @SuppressWarnings("serial")
 public class TableOfAllPages extends ScenarioSteps {
-	
+
 	// This table contains all application pages
 	private static final Map<String, String> appPages = new HashMap<>();
-	
+
 	public TableOfAllPages() {
 		appPages.put("home".toLowerCase(), "auto.pages.HomePage");
 		appPages.put("login".toLowerCase(), "auto.pages.LoginPage");
@@ -20,7 +20,7 @@ public class TableOfAllPages extends ScenarioSteps {
 
 	@SuppressWarnings("rawtypes")
 	public Class getClass(String pageName) throws ClassNotFoundException {
-		return  Class.forName(appPages.get(pageName));
+		return Class.forName(appPages.get(pageName));
 	}
 
 }
