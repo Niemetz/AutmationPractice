@@ -3,19 +3,21 @@
 #Feature: List of scenarios.
 ## Author: John Nguyen
 #############################################
-# Epic Requirement ID  = UPM_1 (ARM-10)  -> User Profile Management 
-# Story Requirement ID = UPM_1.9 (ARM-18) -> View Order History And Details 
+# Epic Requirement ID  = UPM_1 (ARM-10)  -> User Profile Management
+# Story Requirement ID = UPM_1.9 (ARM-18) -> View Order History And Details
 # Acceptance Criteria :
-# As a user of the Automation Practice website 
-# I should be able to see what I have order via the "View Order History and Details" page 
+# As a user of the Automation Practice website
+# I should be able to see what I have order via the "View Order History and Details" page
 # So I know what I have ordered.
-############################################# 
+#############################################
 # Pre Condition:
 # - User can access to his/her user profile
 # Post Condition
 # - User can view his/her order history and details
-#  Change made to the local branch my_local_branch
-@Test_Cycle:Regression_Release_1.0_RC_1.0 
+
+#  This is a direct upload to GitHUb #1
+
+@Test_Cycle:Regression_Release_1.0_RC_1.0
 @version:Build_Release_1.0_RC_1.0
 Feature: Address modification
 
