@@ -14,8 +14,7 @@
 # - User can access to his/her user profile
 # Post Condition
 # - User can view his/her order history and details
-#  I want to see this file gets pulled....
-#  John make some code changes to this source code file.....
+# Change #1
 
 
 
