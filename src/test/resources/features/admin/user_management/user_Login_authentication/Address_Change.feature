@@ -15,7 +15,7 @@
 # Post Condition
 # - User can view his/her order history and details
 
-#  This is a direct upload to GitHUb #2
+#  This is a direct upload to GitHUb #3
 
 @Test_Cycle:Regression_Release_1.0_RC_1.0
 @version:Build_Release_1.0_RC_1.0
