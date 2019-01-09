@@ -14,7 +14,7 @@
 # - User can access to his/her user profile
 # Post Condition
 # - User can view his/her order history and details
-# Change #1
+# GitHub.  Change #2
 
 
 
