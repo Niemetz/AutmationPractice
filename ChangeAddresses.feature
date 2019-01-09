@@ -14,8 +14,7 @@
 # - User can access to his/her user profile
 # Post Condition
 # - User can view his/her order history and details
-# Change in bitbucket
-# Change #6 want to see this commit in ARM-4
+# GitHub.  Change #4
 
 
 
