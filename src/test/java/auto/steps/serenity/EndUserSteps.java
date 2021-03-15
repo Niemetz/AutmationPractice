@@ -131,7 +131,8 @@ public class EndUserSteps extends ScenarioSteps {
 	}
 
 	public void user_logs_out() throws Exception {
+		
 		getDriver().close();
-
+		getDriver().quit();
 	}
 }
