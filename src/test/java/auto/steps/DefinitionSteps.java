@@ -14,8 +14,8 @@ public class DefinitionSteps {
 	@Steps
 	EndUserSteps user;
 
-	@Given("^user navigates to Amazon \"([^\"]*)\" website$")
-	public void user_navigates_to_Amazon_website(String gherkinPageName) throws Throwable {
+	@Given("^user navigates to the Automation Practice \"([^\"]*)\" website$")
+	public void navigates_to_page(String gherkinPageName) throws Throwable {
 		user.navigates_to_page(gherkinPageName.toLowerCase());
 	}
 
