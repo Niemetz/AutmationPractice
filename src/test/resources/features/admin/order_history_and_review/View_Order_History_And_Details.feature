@@ -32,7 +32,7 @@ Feature: View order history and details
     And user verifies that all expected elelments are displayed on the page
     When user clicks on the "ORDER HISTORY AND DETAILS" button
     Then user lands on the "ORDER HISTORY" page
-    And user verifies that the value of the "Order Reference" field is "AFYYDFIPQ"
-    And user verifies that the value of the "Date" field is "10/03/2017"
+    And user verifies that the value of the "Order Reference" field is "VMAQINDCC"
+    And user verifies that the value of the "Date" field is "05/03/2021"
     And user verifies that the value of the "Status" field is "On backorder"
     And user logs out

@@ -6,8 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features = { "src/test/resources/features/admin" }
-// ,tags={"@View-History-And-Details or @Address-Change" }
-		, tags = { "@View-History-And-Details, @Address-Change" })
+		, tags = { "@View-History-And-Details, @ModifyUserAddress" })
 public class UserProfileManagementTestSuite {
 
 }
