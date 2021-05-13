@@ -11,7 +11,7 @@
 # - User can access to his/her user profile
 # Post Condition
 # - User can view his/her order history and details
-# 1 Do this again 1
+#  Test 1
 
 
 @Test_Cycle:Regression_Release_1.0_RC_1.0 
